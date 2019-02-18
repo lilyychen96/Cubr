@@ -6,9 +6,10 @@ import math
 ################### GLOBAL VARIABLES ###################
 SQUARELEN = 133
 # Hue & Saturation list
-# Blue, Green, Yellow, White, Red, Orange
 HSLIST = [[105, 177], [80,177], [30, 177], [125, 60], [165, 177], [12, 177]]
+# Blue, Green, Yellow, White, Red, Orange
 COLOR = ['b', 'g', 'y', 'w', 'r', 'o']
+FACE = ['L', 'R', 'U', 'D', 'F', 'B']
 MIRROR = True
 # stores mapped cube
 CUBE = [["N" for i in range(9)] for j in range(6)]
@@ -51,8 +52,8 @@ def findColor(img, leftX, bottomY):
 			minDist = dist
 			minIndex = counter
 		counter += 1
-
-	return COLOR[minIndex]
+	# if the color is wanted use COLOR instead of FACE
+	return FACE[minIndex]
 
 # map the colors present on the cube face
 def mapCubeFace(hsv):
@@ -67,7 +68,7 @@ def mapCubeFace(hsv):
 	lowerRight = findColor(hsv, 716, 416)
 
 	# fill the mapped cube depending on center color
-	index = COLOR.index(center)
+	index = FACE.index(center)
 	CUBE[index][0] = topLeft
 	CUBE[index][1] = topMid
 	CUBE[index][2] = topRight
@@ -80,18 +81,28 @@ def mapCubeFace(hsv):
 	print(CUBE[index])
 
 def mapToStr():
-	output = " " * 4 + CUBE[3][0] +  CUBE[3][1] + CUBE[3][2] + " " * 7 + "\n" \
-	+ " " * 4 + CUBE[3][3] +  CUBE[3][4] + CUBE[3][5] + " " * 7 + "\n" \
-	+ " " * 4 + CUBE[3][6] +  CUBE[3][7] + CUBE[3][8] + " " * 7 + "\n" \
-	+ CUBE[1][0] +  CUBE[1][1] + CUBE[1][2] + " " + CUBE[4][0] +  CUBE[4][1] + CUBE[4][2] + " " + CUBE[0][0] +  CUBE[0][1] + CUBE[0][2] + " " + CUBE[5][0] +  CUBE[5][1] + CUBE[5][2] + "\n" \
-	+ CUBE[1][3] +  CUBE[1][4] + CUBE[1][5] + " " + CUBE[4][3] +  CUBE[4][4] + CUBE[4][5] + " " + CUBE[0][3] +  CUBE[0][4] + CUBE[0][5] + " " + CUBE[5][3] +  CUBE[5][4] + CUBE[5][5] + "\n" \
-	+ CUBE[1][6] +  CUBE[1][7] + CUBE[1][8] + " " + CUBE[4][6] +  CUBE[4][7] + CUBE[4][8] + " " + CUBE[0][6] +  CUBE[0][7] + CUBE[0][8] + " " + CUBE[5][6] +  CUBE[5][7] + CUBE[5][8] + "\n" \
-	+ " " * 4 + CUBE[2][0] +  CUBE[2][1] + CUBE[2][2] + " " * 7 + "\n" \
+	output = " " * 4 + CUBE[2][0] +  CUBE[2][1] + CUBE[2][2] + " " * 7 + "\n" \
 	+ " " * 4 + CUBE[2][3] +  CUBE[2][4] + CUBE[2][5] + " " * 7 + "\n" \
-	+ " " * 4 + CUBE[2][6] +  CUBE[2][7] + CUBE[2][8] + " " * 7
+	+ " " * 4 + CUBE[2][6] +  CUBE[2][7] + CUBE[2][8] + " " * 7 + "\n" \
+	+ CUBE[0][0] +  CUBE[0][1] + CUBE[0][2] + " " + CUBE[4][0] +  CUBE[4][1] + CUBE[4][2] + " " + CUBE[1][0] +  CUBE[1][1] + CUBE[1][2] + " " + CUBE[5][0] +  CUBE[5][1] + CUBE[5][2] + "\n" \
+	+ CUBE[0][3] +  CUBE[0][4] + CUBE[0][5] + " " + CUBE[4][3] +  CUBE[4][4] + CUBE[4][5] + " " + CUBE[1][3] +  CUBE[1][4] + CUBE[1][5] + " " + CUBE[5][3] +  CUBE[5][4] + CUBE[5][5] + "\n" \
+	+ CUBE[0][6] +  CUBE[0][7] + CUBE[0][8] + " " + CUBE[4][6] +  CUBE[4][7] + CUBE[4][8] + " " + CUBE[1][6] +  CUBE[1][7] + CUBE[1][8] + " " + CUBE[5][6] +  CUBE[5][7] + CUBE[5][8] + "\n" \
+	+ " " * 4 + CUBE[3][0] +  CUBE[3][1] + CUBE[3][2] + " " * 7 + "\n" \
+	+ " " * 4 + CUBE[3][3] +  CUBE[3][4] + CUBE[3][5] + " " * 7 + "\n" \
+	+ " " * 4 + CUBE[3][6] +  CUBE[3][7] + CUBE[3][8] + " " * 7
 	print(output)
+
+# compatible with 2 phas algo solver
+def outputStr():
+	order = [2, 1, 4, 3, 0, 5]
+	res = ""
+	for index in order:
+		res += ''.join(CUBE[index])
+	print(res)
+	return res
 				
 def main():
+	# change to 1 for external web cam
 	cam = cv2.VideoCapture(0)
 	while True:
 	    retVal, img = cam.read()
@@ -174,6 +185,7 @@ def main():
 	    if key == 32:
 	    	mapCubeFace(hsv)
 	    	mapToStr()
+	    	outputStr()
 
 	cv2.destroyAllWindows()
 
