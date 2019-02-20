@@ -10,9 +10,12 @@ HSLIST = [[105, 177], [80,177], [30, 177], [125, 60], [165, 177], [12, 177]]
 # Blue, Green, Yellow, White, Red, Orange
 COLOR = ['b', 'g', 'y', 'w', 'r', 'o']
 FACE = ['L', 'R', 'U', 'D', 'F', 'B']
-MIRROR = True
+RGB = [(255,0,0),(0,128,0),(0,255,255),(255,255,255),(0,0,255),(0,165,255)]
+MARGIN = 40
+MIRROR = False
 # stores mapped cube
 CUBE = [["N" for i in range(9)] for j in range(6)]
+OUTPUT = ''
 ########################################################
 
 # distance formula between 2 points
@@ -24,14 +27,14 @@ def findColor(img, leftX, bottomY):
 	hAvg = 0
 	sAvg = 0
 	colorDist = []
-	for row in range(bottomY, bottomY + SQUARELEN):
-		for col in range(leftX, leftX + SQUARELEN):
+	for row in range(bottomY + MARGIN, bottomY + SQUARELEN - MARGIN):
+		for col in range(leftX + MARGIN, leftX + SQUARELEN - MARGIN):
 			# hue 
 			hAvg += img[row][col][0]
 			# saturation
 			sAvg += img[row][col][1]
-	hAvg /= (SQUARELEN ** 2)
-	sAvg /= (SQUARELEN ** 2)
+	hAvg /= ((SQUARELEN - 2 * MARGIN) ** 2)
+	sAvg /= ((SQUARELEN - 2 * MARGIN) ** 2)
 
 	# DEBUG HSV values in a grid
 	# print(hAvg)
@@ -78,7 +81,31 @@ def mapCubeFace(hsv):
 	CUBE[index][6] = lowerLeft
 	CUBE[index][7] = lowerMid
 	CUBE[index][8] = lowerRight
-	print(CUBE[index])
+
+# draws color of square in real time
+def realTimeColor(hsv, res):
+	topLeft = findColor(hsv, 450, 150)
+	topMid = findColor(hsv, 583, 150)
+	topRight = findColor(hsv, 716, 150)
+	midLeft = findColor(hsv, 450, 283)
+	center = findColor(hsv, 583, 283)
+	midRight = findColor(hsv, 716, 283)
+	lowerLeft = findColor(hsv, 450, 416)
+	lowerMid = findColor(hsv, 583, 416)
+	lowerRight = findColor(hsv, 716, 416)
+
+	cv2.rectangle(res,(25,25),(75,75),RGB[FACE.index(topLeft)],-1)
+	cv2.rectangle(res,(75,25),(125,75),RGB[FACE.index(topMid)],-1)
+	cv2.rectangle(res,(125,25),(175,75),RGB[FACE.index(topRight)],-1)
+
+	cv2.rectangle(res,(25,75),(75,125),RGB[FACE.index(midLeft)],-1)
+	cv2.rectangle(res,(75,75),(125,125),RGB[FACE.index(center)],-1)
+	cv2.rectangle(res,(125,75),(175,125),RGB[FACE.index(midRight)],-1)
+
+	cv2.rectangle(res,(25,125),(75,175),RGB[FACE.index(lowerLeft)],-1)
+	cv2.rectangle(res,(75,125),(125,175),RGB[FACE.index(lowerMid)],-1)
+	cv2.rectangle(res,(125,125),(175,175),RGB[FACE.index(lowerRight)],-1)
+
 
 def mapToStr():
 	output = " " * 4 + CUBE[2][0] +  CUBE[2][1] + CUBE[2][2] + " " * 7 + "\n" \
@@ -98,7 +125,6 @@ def outputStr():
 	res = ""
 	for index in order:
 		res += ''.join(CUBE[index])
-	print(res)
 	return res
 				
 def main():
@@ -127,26 +153,26 @@ def main():
 	    greenUpper = np.array(greenUpper, dtype = "uint8")
 
 	    # yellow color detection
-	    yellowLower = [20, 100, 100]
-	    yellowUpper = [40, 255, 255]
+	    yellowLower = [25, 100, 50]
+	    yellowUpper = [60, 255, 255]
 	    yellowLower = np.array(yellowLower, dtype = "uint8")
 	    yellowUpper = np.array(yellowUpper, dtype = "uint8")
 
 	    # white color detection
-	    whiteLower = [90, 10, 130]
+	    whiteLower = [90, 10, 50]
 	    whiteUpper = [160, 110, 255]
 	    whiteLower = np.array(whiteLower, dtype = "uint8")
 	    whiteUpper = np.array(whiteUpper, dtype = "uint8")
 
 	    # red color detection
-	    redLower = [150, 100, 100]
+	    redLower = [150, 100, 50]
 	    redUpper = [180, 255, 255]
 	    redLower = np.array(redLower, dtype = "uint8")
 	    redUpper = np.array(redUpper, dtype = "uint8")
 
 	    # orange color detection
-	    orangeLower = [10, 100, 100]
-	    orangeUpper = [15, 255, 255]
+	    orangeLower = [0, 100, 50]
+	    orangeUpper = [25, 255, 255]
 	    orangeLower = np.array(orangeLower, dtype = "uint8")
 	    orangeUpper = np.array(orangeUpper, dtype = "uint8")
 
@@ -167,11 +193,18 @@ def main():
 	    res = cv2.bitwise_and(img,img, mask = mask)
 	    
 	    # draw in area where cube will be scanned
-	    cv2.rectangle(res,(450,150),(850,550),(0,255,0),3)
-	    cv2.line(res,(588,150),(588,550),(0,255,0),3)
-	    cv2.line(res,(716,150),(716,550),(0,255,0),3)
-	    cv2.line(res,(450,283),(850,283),(0,255,0),3)
-	    cv2.line(res,(450,416),(850,416),(0,255,0),3)
+	    cv2.rectangle(res,(450+MARGIN,150+MARGIN),(583-MARGIN,283-MARGIN),(0,255,0),3)
+	    cv2.rectangle(res,(583+MARGIN,150+MARGIN),(716-MARGIN,283-MARGIN),(0,255,0),3)
+	    cv2.rectangle(res,(716+MARGIN,150+MARGIN),(850-MARGIN,283-MARGIN),(0,255,0),3)
+	    cv2.rectangle(res,(450+MARGIN,283+MARGIN),(583-MARGIN,416-MARGIN),(0,255,0),3)
+	    cv2.rectangle(res,(583+MARGIN,283+MARGIN),(716-MARGIN,416-MARGIN),(0,255,0),3)
+	    cv2.rectangle(res,(716+MARGIN,283+MARGIN),(850-MARGIN,416-MARGIN),(0,255,0),3)
+	    cv2.rectangle(res,(450+MARGIN,416+MARGIN),(583-MARGIN,550-MARGIN),(0,255,0),3)
+	    cv2.rectangle(res,(583+MARGIN,416+MARGIN),(716-MARGIN,550-MARGIN),(0,255,0),3)
+	    cv2.rectangle(res,(716+MARGIN,416+MARGIN),(850-MARGIN,550-MARGIN),(0,255,0),3)
+
+	    # track in real time the color
+	    realTimeColor(hsv,res)
 
 	    # display the frame
 	    cv2.imshow('Cube State', res)
@@ -181,11 +214,18 @@ def main():
 	    if  key == 27: 
 	        break
 
-	    # write logic for enter key
+	    # write logic for space key
 	    if key == 32:
 	    	mapCubeFace(hsv)
 	    	mapToStr()
-	    	outputStr()
+	    	OUTPUT = outputStr()
+	    	
+
+	    #write logic for enter key
+	    if key == 13:
+	    	print(OUTPUT)
+	    	break
+	    	 
 
 	cv2.destroyAllWindows()
 
