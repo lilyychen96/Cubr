@@ -1,29 +1,29 @@
-from cube import Cube as Cb, Color as Cl
+from facelet import Facelet as Fc, Color as Cl
 
 # Corner to cube piece positions
-cornerCb = [[Cb.U9, Cb.R1, Cb.F3],
-            [Cb.U7, Cb.F1, Cb.L3],
-            [Cb.U1, Cb.L1, Cb.B3],
-            [Cb.U3, Cb.B1, Cb.R7],
-            [Cb.D3, Cb.F9, Cb.R3],
-            [Cb.D1, Cb.L9, Cb.F7],
-            [Cb.D7, Cb.B9, Cb.L7],
-            [Cb.D9, Cb.R9, Cb.B7],
+cornerFc = [[Fc.U9, Fc.R1, Fc.F3],
+            [Fc.U7, Fc.F1, Fc.L3],
+            [Fc.U1, Fc.L1, Fc.B3],
+            [Fc.U3, Fc.B1, Fc.R3],
+            [Fc.D3, Fc.F9, Fc.R7],
+            [Fc.D1, Fc.L9, Fc.F7],
+            [Fc.D7, Fc.B9, Fc.L7],
+            [Fc.D9, Fc.R9, Fc.B7],
             ]
 
 # Edge to cube piece positions
-edgeCb = [[Cb.U6, Cb.R4],
-          [Cb.U8, Cb.F2],
-          [Cb.U4, Cb.L2],
-          [Cb.U2, Cb.B2],
-          [Cb.D6, Cb.R6],
-          [Cb.D2, Cb.F8],
-          [Cb.D4, Cb.L8],
-          [Cb.D8, Cb.B8],
-          [Cb.F6, Cb.R2],
-          [Cb.F4, Cb.L6],
-          [Cb.B4, Cb.R8],
-          [Cb.B6, Cb.L4],
+edgeFc = [[Fc.U6, Fc.R2],
+          [Fc.U8, Fc.F2],
+          [Fc.U4, Fc.L2],
+          [Fc.U2, Fc.B2],
+          [Fc.D6, Fc.R8],
+          [Fc.D2, Fc.F8],
+          [Fc.D4, Fc.L8],
+          [Fc.D8, Fc.B8],
+          [Fc.F6, Fc.R4],
+          [Fc.F4, Fc.L6],
+          [Fc.B4, Fc.R6],
+          [Fc.B6, Fc.L4],
          ]
 
 # Corner positions to color
