@@ -92,10 +92,10 @@ class Cube:
         edges = False
 
         c_cbs = set([ # corner cubies
-            (Cl.U, Cl.R, Cl.F), (Cl.U, Cl.F, Cl.L),
-            (Cl.U, Cl.L, Cl.B), (Cl.U, Cl.B, Cl.R),
-            (Cl.D, Cl.F, Cl.R), (Cl.D, Cl.L, Cl.F),
-            (Cl.D, Cl.B, Cl.L), (Cl.D, Cl.R, Cl.B)
+            tuple(sorted([Cl.U, Cl.R, Cl.F])), sorted([Cl.U, Cl.F, Cl.L]),
+            tuple(sorted([Cl.U, Cl.L, Cl.B])), sorted([Cl.U, Cl.B, Cl.R]),
+            tuple(sorted([Cl.D, Cl.F, Cl.R])), sorted([Cl.D, Cl.L, Cl.F]),
+            tuple(sorted([Cl.D, Cl.B, Cl.L])), sorted([Cl.D, Cl.R, Cl.B])
         ])
 
         # check for all corner cubies
@@ -145,10 +145,10 @@ class Cube:
         cbs[Cn.DBL] = [cb[33], cb[53], cb[42]]
         cbs[Cn.DRB] = [cb[35], cb[17], cb[51]]
         cnrs = set([
-            sort(cbs[Cn.URF]), sort(cbs[Cn.UFL]),
-            sort(cbs[Cn.ULB]), sort(cbs[Cn.UBR]),
-            sort(cbs[Cn.DFR]), sort(cbs[Cn.DLF]),
-            sort(cbs[Cn.DBL]), sort(cbs[Cn.DRB])
+            sorted(cbs[Cn.URF]), sorted(cbs[Cn.UFL]),
+            sorted(cbs[Cn.ULB]), sorted(cbs[Cn.UBR]),
+            sorted(cbs[Cn.DFR]), sorted(cbs[Cn.DLF]),
+            sorted(cbs[Cn.DBL]), sorted(cbs[Cn.DRB])
         ])
 
         # edge cubies
@@ -165,9 +165,9 @@ class Cube:
         cbs[Ed.BR] = [cb[48], cb[16]]
         cbs[Ed.BL] = [cb[50], cb[39]]
         edgs = set([
-            sort(cbs[UR]), sort(cbs[UF]), sort(cbs[UL]), sort(cbs[UB]),
-            sort(cbs[DR]), sort(cbs[DF]), sort(cbs[DL]), sort(cbs[DB]),
-            sort(cbs[FR]), sort(cbs[FL]), sort(cbs[BR]), sort(cbs[BL])
+            sorted(cbs[UR]), sorted(cbs[UF]), sorted(cbs[UL]), sorted(cbs[UB]),
+            sorted(cbs[DR]), sorted(cbs[DF]), sorted(cbs[DL]), sorted(cbs[DB]),
+            sorted(cbs[FR]), sorted(cbs[FL]), sorted(cbs[BR]), sorted(cbs[BL])
         ])
 
         (corners, edges) = self.check_cubies(cnrs, edgs)
@@ -182,7 +182,7 @@ class Cube:
         Updates the cube state's list and cubie dict representations.
         """
         self.cb = new_c
-        self.cubies = update_cubies()
+        self.update_cubies()
 
     def verify_config(self):
         """
