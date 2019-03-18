@@ -1,5 +1,5 @@
 from facelet import Color as Cl, Corner as Cn, Edge as Ed
-#from defs import cornerFc, edgeFc, cornerCl, edgeCl
+from defs import cornerFc, edgeFc, cornerCl, edgeCl
 import string
 
 
@@ -92,10 +92,10 @@ class Cube:
         edges = False
 
         c_cbs = set([ # corner cubies
-            sort([Cl.U, Cl.R, Cl.F]), sort([Cl.U, Cl.F, Cl.L]),
-            sort([Cl.U, Cl.L, Cl.B]), sort([Cl.U, Cl.B, Cl.R]),
-            sort([Cl.D, Cl.F, Cl.R]), sort([Cl.D, Cl.L, Cl.F]),
-            sort([Cl.D, Cl.B, Cl.L]), sort([Cl.D, Cl.R, Cl.B])
+            (Cl.U, Cl.R, Cl.F), (Cl.U, Cl.F, Cl.L),
+            (Cl.U, Cl.L, Cl.B), (Cl.U, Cl.B, Cl.R),
+            (Cl.D, Cl.F, Cl.R), (Cl.D, Cl.L, Cl.F),
+            (Cl.D, Cl.B, Cl.L), (Cl.D, Cl.R, Cl.B)
         ])
 
         # check for all corner cubies
@@ -108,12 +108,12 @@ class Cube:
             corners = True
 
         e_cbs = set([ # edge cubies
-            sort([Cl.U, Cl.R]), sort([Cl.U, Cl.F]),
-            sort([Cl.U, Cl.L]), sort([Cl.U, Cl.B]),
-            sort([Cl.D, Cl.R]), sort([Cl.D, Cl.F]),
-            sort([Cl.D, Cl.L]), sort([Cl.D, Cl.B]),
-            sort([Cl.F, Cl.R]), sort([Cl.F, Cl.L]),
-            sort([Cl.B, Cl.R]), sort([Cl.B, Cl.L])
+            (Cl.U, Cl.R), (Cl.U, Cl.F),
+            (Cl.U, Cl.L), (Cl.U, Cl.B),
+            (Cl.D, Cl.R), (Cl.D, Cl.F),
+            (Cl.D, Cl.L), (Cl.D, Cl.B),
+            (Cl.F, Cl.R), (Cl.F, Cl.L),
+            (Cl.B, Cl.R), (Cl.B, Cl.L)
         ])
 
         # check for all edge cubies
