@@ -108,12 +108,12 @@ class Cube:
             corners = True
 
         e_cbs = set([ # edge cubies
-            (Cl.U, Cl.R), (Cl.U, Cl.F),
-            (Cl.U, Cl.L), (Cl.U, Cl.B),
-            (Cl.D, Cl.R), (Cl.D, Cl.F),
-            (Cl.D, Cl.L), (Cl.D, Cl.B),
-            (Cl.F, Cl.R), (Cl.F, Cl.L),
-            (Cl.B, Cl.R), (Cl.B, Cl.L)
+            tuple(sorted([Cl.U, Cl.R])), tuple(sorted([Cl.U, Cl.F])),
+            tuple(sorted([Cl.U, Cl.L])), tuple(sorted([Cl.U, Cl.B])),
+            tuple(sorted([Cl.D, Cl.R])), tuple(sorted([Cl.D, Cl.F])),
+            tuple(sorted([Cl.D, Cl.L])), tuple(sorted([Cl.D, Cl.B])),
+            tuple(sorted([Cl.F, Cl.R])), tuple(sorted([Cl.F, Cl.L])),
+            tuple(sorted([Cl.B, Cl.R])), tuple(sorted([Cl.B, Cl.L]))
         ])
 
         # check for all edge cubies
@@ -144,11 +144,12 @@ class Cube:
         cbs[Cn.DLF] = [cb[27], cb[44], cb[24]]
         cbs[Cn.DBL] = [cb[33], cb[53], cb[42]]
         cbs[Cn.DRB] = [cb[35], cb[17], cb[51]]
+
         cnrs = set([
-            sorted(cbs[Cn.URF]), sorted(cbs[Cn.UFL]),
-            sorted(cbs[Cn.ULB]), sorted(cbs[Cn.UBR]),
-            sorted(cbs[Cn.DFR]), sorted(cbs[Cn.DLF]),
-            sorted(cbs[Cn.DBL]), sorted(cbs[Cn.DRB])
+            tuple(sorted(cbs[Cn.URF])), tuple(sorted(cbs[Cn.UFL])),
+            tuple(sorted(cbs[Cn.ULB])), tuple(sorted(cbs[Cn.UBR])),
+            tuple(sorted(cbs[Cn.DFR])), tuple(sorted(cbs[Cn.DLF])),
+            tuple(sorted(cbs[Cn.DBL])), tuple(sorted(cbs[Cn.DRB]))
         ])
 
         # edge cubies
@@ -165,9 +166,9 @@ class Cube:
         cbs[Ed.BR] = [cb[48], cb[16]]
         cbs[Ed.BL] = [cb[50], cb[39]]
         edgs = set([
-            sorted(cbs[UR]), sorted(cbs[UF]), sorted(cbs[UL]), sorted(cbs[UB]),
-            sorted(cbs[DR]), sorted(cbs[DF]), sorted(cbs[DL]), sorted(cbs[DB]),
-            sorted(cbs[FR]), sorted(cbs[FL]), sorted(cbs[BR]), sorted(cbs[BL])
+            tuple(sorted(cbs[UR])), tuple(sorted(cbs[UF])), tuple(sorted(cbs[UL])), tuple(sorted(cbs[UB])),
+            tuple(sorted(cbs[DR])), tuple(sorted(cbs[DF])), tuple(sorted(cbs[DL])), tuple(sorted(cbs[DB])),
+            tuple(sorted(cbs[FR])), tuple(sorted(cbs[FL])), tuple(sorted(cbs[BR])), tuple(sorted(cbs[BL]))
         ])
 
         (corners, edges) = self.check_cubies(cnrs, edgs)
