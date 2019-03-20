@@ -6,7 +6,7 @@ import math
 ################### GLOBAL VARIABLES ###################
 SQUARELEN = 133
 # Hue & Saturation list
-HSLIST = [[105, 177], [80,177], [30, 177], [125, 60], [165, 177], [12, 177]]
+HSLIST = [[126, 190, 190], [68,190, 190], [32, 190, 190], [123, 20, 242], [5, 190, 190], [13, 190, 190]]
 # Blue, Green, Yellow, White, Red, Orange
 COLOR = ['b', 'g', 'y', 'w', 'r', 'o']
 FACE = ['L', 'R', 'U', 'D', 'F', 'B']
@@ -19,33 +19,40 @@ OUTPUT = ''
 ########################################################
 
 # distance formula between 2 points
-def distance(x1, y1, x2, y2):
-	return math.sqrt(((x2 - x1)**2) + ((y2 - y1)**2))
+def distance(x1, y1, z1, x2, y2, z2):
+	return math.sqrt(((x2 - x1)**2) + ((y2 - y1)**2) + ((z2 - z1)**2))
 
 # finds the color in a given region of the image
 def findColor(img, leftX, bottomY):
 	hAvg = 0
 	sAvg = 0
+	vAvg = 0
+	counter = 0
 	colorDist = []
 	for row in range(bottomY + MARGIN, bottomY + SQUARELEN - MARGIN):
 		for col in range(leftX + MARGIN, leftX + SQUARELEN - MARGIN):
-			# hue 
+			# hue
 			hAvg += img[row][col][0]
 			# saturation
 			sAvg += img[row][col][1]
-	hAvg /= ((SQUARELEN - 2 * MARGIN) ** 2)
-	sAvg /= ((SQUARELEN - 2 * MARGIN) ** 2)
+			# value
+			vAvg += img[row][col][2]
+			counter += 1
+
+	hAvg /= counter
+	sAvg /= counter
+	vAvg /= counter
 
 	# DEBUG HSV values in a grid
-	# print(hAvg)
-	# print(sAvg)
+	# print(hAvg, sAvg, vAvg)
 
-	colorDist.append(distance(hAvg, sAvg, HSLIST[0][0], HSLIST[0][1]))
-	colorDist.append(distance(hAvg, sAvg, HSLIST[1][0], HSLIST[1][1]))
-	colorDist.append(distance(hAvg, sAvg, HSLIST[2][0], HSLIST[2][1]))	
-	colorDist.append(distance(hAvg, sAvg, HSLIST[3][0], HSLIST[3][1]))
-	colorDist.append(distance(hAvg, sAvg, HSLIST[4][0], HSLIST[4][1]))
-	colorDist.append(distance(hAvg, sAvg, HSLIST[5][0], HSLIST[5][1]))
+
+	colorDist.append(distance(hAvg, sAvg, vAvg, HSLIST[0][0], HSLIST[0][1], HSLIST[0][2]))
+	colorDist.append(distance(hAvg, sAvg, vAvg, HSLIST[1][0], HSLIST[1][1], HSLIST[1][2]))
+	colorDist.append(distance(hAvg, sAvg, vAvg, HSLIST[2][0], HSLIST[2][1], HSLIST[2][2]))
+	colorDist.append(distance(hAvg, sAvg, vAvg, HSLIST[3][0], HSLIST[3][1], HSLIST[3][2]))
+	colorDist.append(distance(hAvg, sAvg, vAvg, HSLIST[4][0], HSLIST[4][1], HSLIST[4][2]))
+	colorDist.append(distance(hAvg, sAvg, vAvg, HSLIST[5][0], HSLIST[5][1], HSLIST[5][2]))
 
 	minDist = 10000
 	minIndex = 0
@@ -126,13 +133,13 @@ def outputStr():
 	for index in order:
 		res += ''.join(CUBE[index])
 	return res
-				
+
 def main():
 	# change to 1 for external web cam
-	cam = cv2.VideoCapture(0)
+	cam = cv2.VideoCapture(1)
 	while True:
 	    retVal, img = cam.read()
-	    if MIRROR: 
+	    if MIRROR:
 	        img = cv2.flip(img, 1)
 
 	    # convert to hsv color space
@@ -141,38 +148,38 @@ def main():
 	    cv2.resizeWindow('Cube State', 1000,1000)
 
 	    # blue color detection
-	    blueLower = [98,100,20]
-	    blueUpper = [112,255,255]
+	    blueLower = [101,128,128]
+	    blueUpper = [150,255,255]
 	    blueLower = np.array(blueLower, dtype = "uint8")
 	    blueUpper = np.array(blueUpper, dtype = "uint8")
 
 	    # green color detection
-	    greenLower = [60,100,100]
-	    greenUpper = [100,255,255]
+	    greenLower = [51,128,128]
+	    greenUpper = [85,255,255]
 	    greenLower = np.array(greenLower, dtype = "uint8")
 	    greenUpper = np.array(greenUpper, dtype = "uint8")
 
 	    # yellow color detection
-	    yellowLower = [25, 100, 50]
-	    yellowUpper = [60, 255, 255]
+	    yellowLower = [16, 128, 128]
+	    yellowUpper = [50,  255, 255]
 	    yellowLower = np.array(yellowLower, dtype = "uint8")
 	    yellowUpper = np.array(yellowUpper, dtype = "uint8")
 
 	    # white color detection
-	    whiteLower = [90, 10, 50]
-	    whiteUpper = [160, 110, 255]
+	    whiteLower = [86, 0, 230]
+	    whiteUpper = [160, 40, 255]
 	    whiteLower = np.array(whiteLower, dtype = "uint8")
 	    whiteUpper = np.array(whiteUpper, dtype = "uint8")
 
 	    # red color detection
-	    redLower = [150, 100, 50]
-	    redUpper = [180, 255, 255]
+	    redLower = [0, 128, 128]
+	    redUpper = [9, 255, 255]
 	    redLower = np.array(redLower, dtype = "uint8")
 	    redUpper = np.array(redUpper, dtype = "uint8")
 
 	    # orange color detection
-	    orangeLower = [0, 100, 50]
-	    orangeUpper = [25, 255, 255]
+	    orangeLower = [10, 128, 128]
+	    orangeUpper = [15, 255, 255]
 	    orangeLower = np.array(orangeLower, dtype = "uint8")
 	    orangeUpper = np.array(orangeUpper, dtype = "uint8")
 
@@ -191,7 +198,7 @@ def main():
 	    mask = cv2.bitwise_or(mask,maskRed)
 	    mask = cv2.bitwise_or(mask,maskOrange)
 	    res = cv2.bitwise_and(img,img, mask = mask)
-	    
+
 	    # draw in area where cube will be scanned
 	    cv2.rectangle(res,(450+MARGIN,150+MARGIN),(583-MARGIN,283-MARGIN),(0,255,0),3)
 	    cv2.rectangle(res,(583+MARGIN,150+MARGIN),(716-MARGIN,283-MARGIN),(0,255,0),3)
@@ -211,7 +218,7 @@ def main():
 
 	    key = cv2.waitKey(1)
 	    # esc to quit
-	    if  key == 27: 
+	    if  key == 27:
 	        break
 
 	    # write logic for space key
@@ -219,13 +226,13 @@ def main():
 	    	mapCubeFace(hsv)
 	    	mapToStr()
 	    	OUTPUT = outputStr()
-	    	
+
 
 	    #write logic for enter key
 	    if key == 13:
 	    	print(OUTPUT)
 	    	break
-	    	 
+
 
 	cv2.destroyAllWindows()
 
