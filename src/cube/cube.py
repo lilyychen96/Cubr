@@ -16,9 +16,10 @@ class Cube:
         self.cubies = dict()
 
         # input configuration, should not change after assignment
+        self.init_state = config
         self.config = config
 
-        self.soln = []
+        self.soln = ""
         self.solved = False
 
     def __str__(self):
@@ -91,38 +92,22 @@ class Cube:
         corners = False
         edges = False
 
-        c_cbs = set([ # corner cubies
-            tuple(sorted([Cl.U, Cl.R, Cl.F])), sorted([Cl.U, Cl.F, Cl.L]),
-            tuple(sorted([Cl.U, Cl.L, Cl.B])), sorted([Cl.U, Cl.B, Cl.R]),
-            tuple(sorted([Cl.D, Cl.F, Cl.R])), sorted([Cl.D, Cl.L, Cl.F]),
-            tuple(sorted([Cl.D, Cl.B, Cl.L])), sorted([Cl.D, Cl.R, Cl.B])
-        ])
-
         # check for all corner cubies
-        count = 0
+        count1 = 0
         for k in cnrs:
-            if cnrs[k] in c_cbs:
-                count += 1
+            if k in cornerCl:
+                count1 += 1
 
-        if count == 8: # expected number of corner cubies
+        if count1 == 8: # expected number of corner cubies
             corners = True
 
-        e_cbs = set([ # edge cubies
-            tuple(sorted([Cl.U, Cl.R])), tuple(sorted([Cl.U, Cl.F])),
-            tuple(sorted([Cl.U, Cl.L])), tuple(sorted([Cl.U, Cl.B])),
-            tuple(sorted([Cl.D, Cl.R])), tuple(sorted([Cl.D, Cl.F])),
-            tuple(sorted([Cl.D, Cl.L])), tuple(sorted([Cl.D, Cl.B])),
-            tuple(sorted([Cl.F, Cl.R])), tuple(sorted([Cl.F, Cl.L])),
-            tuple(sorted([Cl.B, Cl.R])), tuple(sorted([Cl.B, Cl.L]))
-        ])
-
         # check for all edge cubies
-        count = 0
+        count2 = 0
         for k in edgs:
-            if edgs[k] in e_cbs:
-                count += 1
+            if k in edgeCl:
+                count2 += 1
 
-        if count == 12: # expected number of edge cubies
+        if count2 == 12: # expected number of edge cubies
             edges = True
 
         return (corners, edges)
@@ -139,8 +124,8 @@ class Cube:
         cbs[Cn.URF] = [cb[8], cb[9], cb[20]]
         cbs[Cn.UFL] = [cb[6], cb[18], cb[38]]
         cbs[Cn.ULB] = [cb[0], cb[36], cb[47]]
-        cbs[Cn.UBR] = [cb[2], cb[45], cb[15]]
-        cbs[Cn.DFR] = [cb[29], cb[26], cb[11]]
+        cbs[Cn.UBR] = [cb[2], cb[45], cb[11]]
+        cbs[Cn.DFR] = [cb[29], cb[26], cb[15]]
         cbs[Cn.DLF] = [cb[27], cb[44], cb[24]]
         cbs[Cn.DBL] = [cb[33], cb[53], cb[42]]
         cbs[Cn.DRB] = [cb[35], cb[17], cb[51]]
@@ -153,30 +138,44 @@ class Cube:
         ])
 
         # edge cubies
-        cbs[Ed.UR] = [cb[5], cb[12]]
+        cbs[Ed.UR] = [cb[5], cb[10]]
         cbs[Ed.UF] = [cb[7], cb[19]]
         cbs[Ed.UL] = [cb[3], cb[37]]
         cbs[Ed.UB] = [cb[1], cb[46]]
-        cbs[Ed.DR] = [cb[32], cb[14]]
+        cbs[Ed.DR] = [cb[32], cb[16]]
         cbs[Ed.DF] = [cb[28], cb[25]]
         cbs[Ed.DL] = [cb[30], cb[43]]
         cbs[Ed.DB] = [cb[34], cb[52]]
-        cbs[Ed.FR] = [cb[23], cb[10]]
+        cbs[Ed.FR] = [cb[23], cb[12]]
         cbs[Ed.FL] = [cb[21], cb[41]]
-        cbs[Ed.BR] = [cb[48], cb[16]]
+        cbs[Ed.BR] = [cb[48], cb[14]]
         cbs[Ed.BL] = [cb[50], cb[39]]
         edgs = set([
-            tuple(sorted(cbs[UR])), tuple(sorted(cbs[UF])), tuple(sorted(cbs[UL])), tuple(sorted(cbs[UB])),
-            tuple(sorted(cbs[DR])), tuple(sorted(cbs[DF])), tuple(sorted(cbs[DL])), tuple(sorted(cbs[DB])),
-            tuple(sorted(cbs[FR])), tuple(sorted(cbs[FL])), tuple(sorted(cbs[BR])), tuple(sorted(cbs[BL]))
+            tuple(sorted(cbs[Ed.UR])), tuple(sorted(cbs[Ed.UF])),
+            tuple(sorted(cbs[Ed.UL])), tuple(sorted(cbs[Ed.UB])),
+            tuple(sorted(cbs[Ed.DR])), tuple(sorted(cbs[Ed.DF])),
+            tuple(sorted(cbs[Ed.DL])), tuple(sorted(cbs[Ed.DB])),
+            tuple(sorted(cbs[Ed.FR])), tuple(sorted(cbs[Ed.FL])),
+            tuple(sorted(cbs[Ed.BR])), tuple(sorted(cbs[Ed.BL]))
         ])
 
         (corners, edges) = self.check_cubies(cnrs, edgs)
+
         try:
             assert(corners and edges)
             self.cubies = cbs.copy()
+
+            # update config string
+            new_config = ""
+            for i in range(len(cb)):
+                face = str(cb[i])[-1]
+                new_config += face
+            self.config = new_config
+
+            self.config = new_config
         except AssertionError:
             print("invalid corner and edge cubies!")
+
 
     def update_state(self, new_c):
         """
@@ -298,30 +297,30 @@ class Cube:
         """
         s = ""
 
-        if self.verify_config():
-            s = ("""
-                           |.............|
-                           |..%s...%s...%s..|
-                           |.............|
-                           |..%s...%s...%s..|
-                           |.............|
-                           |..%s...%s...%s..|
-             |.............|.............|.............|.............|
-             |..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|
-             |.............|.............|.............|.............|
-             |..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|
-             |.............|.............|.............|.............|
-             |..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|
-             |.............|.............|.............|.............|
-                           |..%s...%s...%s..|
-                           |.............|
-                           |..%s...%s...%s..|
-                           |.............|
-                           |..%s...%s...%s..|
-                           |.............|\n
-                 """
-                 % tuple(self.reformat_config())
-                )
+        # if self.verify_config():
+        s = ("""
+                       |.............|
+                       |..%s...%s...%s..|
+                       |.............|
+                       |..%s...%s...%s..|
+                       |.............|
+                       |..%s...%s...%s..|
+         |.............|.............|.............|.............|
+         |..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|
+         |.............|.............|.............|.............|
+         |..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|
+         |.............|.............|.............|.............|
+         |..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|
+         |.............|.............|.............|.............|
+                       |..%s...%s...%s..|
+                       |.............|
+                       |..%s...%s...%s..|
+                       |.............|
+                       |..%s...%s...%s..|
+                       |.............|\n
+             """
+             % tuple(self.reformat_config())
+            )
 
         return s
 
@@ -355,7 +354,7 @@ class Cube:
         """
         Adds string name of move to solution list.
         """
-        self.soln.append(move_str)
+        self.soln += move_str
 
 
 # # TODO: restructure
@@ -363,7 +362,9 @@ class Cube:
 # config1 = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
 # cube1 = Cube(config1)
 # print(cube1)
+# cube1.verify_config()
 
 # config2 = "FUUBUUDRBLBBBRLBLBFDDBFRUURFFDFDDFDUDDRLLLRRLLRLFBURFU"
 # cube2 = Cube(config2)
 # print(cube2)
+# cube2.verify_config()
