@@ -20,4 +20,4 @@ Project website: https://course.ece.cmu.edu/~ece500/projects/s19-teamd6/
 - Built-in or external webcam
 
 # System Overview
-![System Overview] (images/System\ Overview.png)
+![System Overview] (https://github.com/lilyychen96/Cubr/blob/master/images/System%20Overview.png)
