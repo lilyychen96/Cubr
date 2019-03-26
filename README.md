@@ -8,7 +8,7 @@ Project website: https://course.ece.cmu.edu/~ece500/projects/s19-teamd6/
   - Firmware, Hardware, + Circuit Design
 - Lily Chen
   - https://lilyychen96.github.io/
-  - Software Design, Circuit Design and Assembly, + CAD 
+  - Software Design, Circuit Design and Assembly, + CAD
 - Sam Fazel-Sarjui
   - https://sfazelsa.github.io/
   - Computer Vision + UI, 3D Printing and Assembly, + Firmware
@@ -20,4 +20,4 @@ Project website: https://course.ece.cmu.edu/~ece500/projects/s19-teamd6/
 - Built-in or external webcam
 
 # System Overview
-![System Overview] (https://github.com/lilyychen96/Cubr/blob/master/images/System%20Overview.png)
+![System Overview] (images/system_overview.png)
