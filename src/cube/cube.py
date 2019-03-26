@@ -2,6 +2,9 @@ from facelet import Color as Cl, Corner as Cn, Edge as Ed
 from defs import cornerFc, edgeFc, cornerCl, edgeCl
 import string
 
+# @TODO: consolidate "unit tests" to different file
+# @TODO: eliminate print statements
+# @TODO: figure out actual error handling/logging...
 
 class Cube:
     def __init__(self, config):
@@ -297,30 +300,30 @@ class Cube:
         """
         s = ""
 
-        # if self.verify_config():
-        s = ("""
-                       |.............|
-                       |..%s...%s...%s..|
-                       |.............|
-                       |..%s...%s...%s..|
-                       |.............|
-                       |..%s...%s...%s..|
-         |.............|.............|.............|.............|
-         |..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|
-         |.............|.............|.............|.............|
-         |..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|
-         |.............|.............|.............|.............|
-         |..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|
-         |.............|.............|.............|.............|
-                       |..%s...%s...%s..|
-                       |.............|
-                       |..%s...%s...%s..|
-                       |.............|
-                       |..%s...%s...%s..|
-                       |.............|\n
-             """
-             % tuple(self.reformat_config())
-            )
+        if self.verify_config():
+            s = ("""
+                           |.............|
+                           |..%s...%s...%s..|
+                           |.............|
+                           |..%s...%s...%s..|
+                           |.............|
+                           |..%s...%s...%s..|
+             |.............|.............|.............|.............|
+             |..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|
+             |.............|.............|.............|.............|
+             |..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|
+             |.............|.............|.............|.............|
+             |..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|..%s...%s...%s..|
+             |.............|.............|.............|.............|
+                           |..%s...%s...%s..|
+                           |.............|
+                           |..%s...%s...%s..|
+                           |.............|
+                           |..%s...%s...%s..|
+                           |.............|\n
+                 """
+                 % tuple(self.reformat_config())
+                )
 
         return s
 
@@ -335,8 +338,8 @@ class Cube:
         Checks if the list representation of the cube configuration is fully
         solved and updates the truth value to self.solved.
         """
-        if self.get_solved():
-            return
+        # if self.get_solved():
+        #     return
 
         complete = [Cl.U] * 9 + [Cl.R] * 9 + [Cl.F] * 9
         complete += [Cl.D] * 9 + [Cl.L] * 9 + [Cl.B] * 9
@@ -354,7 +357,12 @@ class Cube:
         """
         Adds string name of move to solution list.
         """
-        self.soln += move_str
+        self.soln += move_str + " "
+        self.update_solved()
+        if self.get_solved():
+            # trimming off excess ending whitespace
+            self.soln = self.soln.rstrip()
+            print("SOLVED!")
 
 
 # # TODO: restructure

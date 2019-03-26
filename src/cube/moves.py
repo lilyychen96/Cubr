@@ -1,7 +1,9 @@
 from cube import Cube
 from facelet import Move as Mv, Color as Cl, Corner as Cn, Edge as Ed
 
-# cube_obj = cube.Cube()
+# @TODO: DOUBLE-CHECK solution string move notation
+# see below, but I believe kociemba's notation may be as follows:
+#       1: 90 degrees CW; 2: 180 degrees; 3: 90 degrees CCW
 
 """
 CUBE ROTATION MOVES
@@ -113,15 +115,15 @@ def R1(cb):
     new_c[2] = cb[20]
     new_c[5] = cb[23]
     new_c[8] = cb[26]
-    new_c[9] = cb[11]
-    new_c[10] = cb[10]
+    new_c[9] = cb[15]
+    new_c[10] = cb[12]
     new_c[11] = cb[9]
-    new_c[12] = cb[14]
+    new_c[12] = cb[16]
     new_c[13] = cb[13] # R center piece
-    new_c[14] = cb[12]
+    new_c[14] = cb[10]
     new_c[15] = cb[17]
-    new_c[16] = cb[16]
-    new_c[17] = cb[15]
+    new_c[16] = cb[14]
+    new_c[17] = cb[11]
     new_c[20] = cb[29]
     new_c[23] = cb[32]
     new_c[26] = cb[35]
@@ -143,15 +145,15 @@ def R2(cb):
     new_c[2] = cb[51]
     new_c[5] = cb[48]
     new_c[8] = cb[45]
-    new_c[9] = cb[15]
-    new_c[10] = cb[16]
+    new_c[9] = cb[11]
+    new_c[10] = cb[14]
     new_c[11] = cb[17]
-    new_c[12] = cb[12]
+    new_c[12] = cb[10]
     new_c[13] = cb[13] # R center piece
-    new_c[14] = cb[14]
+    new_c[14] = cb[16]
     new_c[15] = cb[9]
-    new_c[16] = cb[10]
-    new_c[17] = cb[11]
+    new_c[16] = cb[12]
+    new_c[17] = cb[15]
     new_c[20] = cb[2]
     new_c[23] = cb[5]
     new_c[26] = cb[8]
@@ -268,7 +270,7 @@ def F3(cb):
     new_c[15] = cb[38]
     new_c[18] = cb[26]
     new_c[19] = cb[25]
-    new_c[20] = cb[25]
+    new_c[20] = cb[24]
     new_c[21] = cb[23]
     new_c[22] = cb[22]  # F center piece
     new_c[23] = cb[21]
@@ -647,12 +649,20 @@ def execute_move(cube_obj, move_list):
             print("invalid move: %s" % move)
             break;
 
-    print("no more moves!")
-
 # # quick unit test
 # config1 = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
 # cube1 = Cube(config1)
 # print(cube1)
-# check_current_cube(cube1.cb)
+# print(check_current_cube(cube1.cb))
 # execute_move(cube1, "U1 U2 F1 F2 D1 D2 L1 L2 B1 B2 R1 R2")
 # execute_move(cube1, "U3 U3 F3 F3 D3 D3 L3 L3 B3 B3 R3 R3")
+# print(cube1.soln)
+
+# # unit test 2 (it works!!!)
+# config2 = "FUUBUUDRBLBBBRLBLBFDDBFRUURFFDFDDFDUDDRLLLRRLLRLFBURFU"
+# cube2 = Cube(config2)
+# print(cube2)
+# print(check_current_cube(cube2.cb))
+# soln2 = "U1 F3 U2 F2 R2 D2 L1 F2 D2 R1 D3 B3 U2 B3 L3 D1 B3 L3 B3 U1"
+# execute_move(cube2, soln2)
+# print(cube2.soln)
