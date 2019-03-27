@@ -1,25 +1,23 @@
 from cube import Cube
 from facelet import Move as Mv, Color as Cl, Corner as Cn, Edge as Ed
 
-# @TODO: DOUBLE-CHECK solution string move notation
-# see below, but I believe kociemba's notation may be as follows:
-#       1: 90 degrees CW; 2: 180 degrees; 3: 90 degrees CCW
 
 """
 CUBE ROTATION MOVES
 The eighteen types of cube rotation moves are the following (see facelet.py):
-    90 degrees CW        90 degrees CCW        180 degrees
-    U1: U                U2: U'                U3: U2
-    R1: R                R2: R'                R3: R2
-    F1: F                F2: F'                F3: F2
-    D1: D                D2: D'                D3: D2
-    L1: L                L2: L'                L3: L2
-    B1: B                B2: B'                B3: B2
+    90 degrees CW        180 degrees           90 degrees CCW
+    U1: U                U2: U2                U3: U'
+    R1: R                R2: R2                R3: R'
+    F1: F                F2: F2                F3: F'
+    D1: D                D2: D2                D3: D'
+    L1: L                L2: L2                L3: L'
+    B1: B                B2: B2                B3: B'
 """
-def U1(cb):
+def U1(cube_obj):
     """
     90 degree clockwise turn of the U face
     """
+    cb = cube_obj.get_cb()
     new_c = cb.copy()
 
     new_c[0] = cb[6]
@@ -46,40 +44,11 @@ def U1(cb):
 
     return new_c
 
-def U2(cb):
-    """
-    90 degree counterclockwise turn of the U face
-    """
-    new_c = cb.copy()
-
-    new_c[0] = cb[2]
-    new_c[1] = cb[5]
-    new_c[2] = cb[8]
-    new_c[3] = cb[1]
-    new_c[4] = cb[4] # U center piece
-    new_c[5] = cb[7]
-    new_c[6] = cb[0]
-    new_c[7] = cb[3]
-    new_c[8] = cb[6]
-    new_c[9] = cb[18]
-    new_c[10] = cb[19]
-    new_c[11] = cb[20]
-    new_c[18] = cb[36]
-    new_c[19] = cb[37]
-    new_c[20] = cb[38]
-    new_c[36] = cb[45]
-    new_c[37] = cb[46]
-    new_c[38] = cb[47]
-    new_c[45] = cb[9]
-    new_c[46] = cb[10]
-    new_c[47] = cb[11]
-
-    return new_c
-
-def U3(cb):
+def U2(cube_obj):
     """
     180 degree turn of the U face
     """
+    cb = cube_obj.get_cb()
     new_c = cb.copy()
 
     new_c[0] = cb[8]
@@ -106,10 +75,42 @@ def U3(cb):
 
     return new_c
 
-def R1(cb):
+def U3(cube_obj):
+    """
+    90 degree counterclockwise turn of the U face
+    """
+    cb = cube_obj.get_cb()
+    new_c = cb.copy()
+
+    new_c[0] = cb[2]
+    new_c[1] = cb[5]
+    new_c[2] = cb[8]
+    new_c[3] = cb[1]
+    new_c[4] = cb[4] # U center piece
+    new_c[5] = cb[7]
+    new_c[6] = cb[0]
+    new_c[7] = cb[3]
+    new_c[8] = cb[6]
+    new_c[9] = cb[18]
+    new_c[10] = cb[19]
+    new_c[11] = cb[20]
+    new_c[18] = cb[36]
+    new_c[19] = cb[37]
+    new_c[20] = cb[38]
+    new_c[36] = cb[45]
+    new_c[37] = cb[46]
+    new_c[38] = cb[47]
+    new_c[45] = cb[9]
+    new_c[46] = cb[10]
+    new_c[47] = cb[11]
+
+    return new_c
+
+def R1(cube_obj):
     """
     90 degree clockwise turn of the R face
     """
+    cb = cube_obj.get_cb()
     new_c = cb.copy()
 
     new_c[2] = cb[20]
@@ -136,40 +137,11 @@ def R1(cb):
 
     return new_c
 
-def R2(cb):
-    """
-    90 degree counterclockwise turn of the R face
-    """
-    new_c = cb.copy()
-
-    new_c[2] = cb[51]
-    new_c[5] = cb[48]
-    new_c[8] = cb[45]
-    new_c[9] = cb[11]
-    new_c[10] = cb[14]
-    new_c[11] = cb[17]
-    new_c[12] = cb[10]
-    new_c[13] = cb[13] # R center piece
-    new_c[14] = cb[16]
-    new_c[15] = cb[9]
-    new_c[16] = cb[12]
-    new_c[17] = cb[15]
-    new_c[20] = cb[2]
-    new_c[23] = cb[5]
-    new_c[26] = cb[8]
-    new_c[29] = cb[20]
-    new_c[32] = cb[23]
-    new_c[35] = cb[26]
-    new_c[45] = cb[35]
-    new_c[48] = cb[32]
-    new_c[51] = cb[29]
-
-    return new_c
-
-def R3(cb):
+def R2(cube_obj):
     """
     180 degree turn of the R face
     """
+    cb = cube_obj.get_cb()
     new_c = cb.copy()
 
     new_c[2] = cb[29]
@@ -196,10 +168,42 @@ def R3(cb):
 
     return new_c
 
-def F1(cb):
+def R3(cube_obj):
+    """
+    90 degree counterclockwise turn of the R face
+    """
+    cb = cube_obj.get_cb()
+    new_c = cb.copy()
+
+    new_c[2] = cb[51]
+    new_c[5] = cb[48]
+    new_c[8] = cb[45]
+    new_c[9] = cb[11]
+    new_c[10] = cb[14]
+    new_c[11] = cb[17]
+    new_c[12] = cb[10]
+    new_c[13] = cb[13] # R center piece
+    new_c[14] = cb[16]
+    new_c[15] = cb[9]
+    new_c[16] = cb[12]
+    new_c[17] = cb[15]
+    new_c[20] = cb[2]
+    new_c[23] = cb[5]
+    new_c[26] = cb[8]
+    new_c[29] = cb[20]
+    new_c[32] = cb[23]
+    new_c[35] = cb[26]
+    new_c[45] = cb[35]
+    new_c[48] = cb[32]
+    new_c[51] = cb[29]
+
+    return new_c
+
+def F1(cube_obj):
     """
     90 degree clockwise turn of the F face
     """
+    cb = cube_obj.get_cb()
     new_c = cb.copy()
 
     new_c[6] = cb[44]
@@ -226,40 +230,11 @@ def F1(cb):
 
     return new_c
 
-def F2(cb):
-    """
-    90 degree counterclockwise turn of the F face
-    """
-    new_c = cb.copy()
-
-    new_c[6] = cb[9]
-    new_c[7] = cb[12]
-    new_c[8] = cb[15]
-    new_c[9] = cb[29]
-    new_c[12] = cb[28]
-    new_c[15] = cb[27]
-    new_c[18] = cb[20]
-    new_c[19] = cb[23]
-    new_c[20] = cb[26]
-    new_c[21] = cb[19]
-    new_c[22] = cb[22]  # F center piece
-    new_c[23] = cb[25]
-    new_c[24] = cb[18]
-    new_c[25] = cb[21]
-    new_c[26] = cb[24]
-    new_c[27] = cb[38]
-    new_c[28] = cb[41]
-    new_c[29] = cb[44]
-    new_c[38] = cb[8]
-    new_c[41] = cb[7]
-    new_c[44] = cb[6]
-
-    return new_c
-
-def F3(cb):
+def F2(cube_obj):
     """
     180 degree turn of the F face
     """
+    cb = cube_obj.get_cb()
     new_c = cb.copy()
 
     new_c[6] = cb[29]
@@ -286,10 +261,42 @@ def F3(cb):
 
     return new_c
 
-def D1(cb):
+def F3(cube_obj):
+    """
+    90 degree counterclockwise turn of the F face
+    """
+    cb = cube_obj.get_cb()
+    new_c = cb.copy()
+
+    new_c[6] = cb[9]
+    new_c[7] = cb[12]
+    new_c[8] = cb[15]
+    new_c[9] = cb[29]
+    new_c[12] = cb[28]
+    new_c[15] = cb[27]
+    new_c[18] = cb[20]
+    new_c[19] = cb[23]
+    new_c[20] = cb[26]
+    new_c[21] = cb[19]
+    new_c[22] = cb[22]  # F center piece
+    new_c[23] = cb[25]
+    new_c[24] = cb[18]
+    new_c[25] = cb[21]
+    new_c[26] = cb[24]
+    new_c[27] = cb[38]
+    new_c[28] = cb[41]
+    new_c[29] = cb[44]
+    new_c[38] = cb[8]
+    new_c[41] = cb[7]
+    new_c[44] = cb[6]
+
+    return new_c
+
+def D1(cube_obj):
     """
     90 degree clockwise turn of the D face
     """
+    cb = cube_obj.get_cb()
     new_c = cb.copy()
 
     new_c[15] = cb[24]
@@ -316,40 +323,11 @@ def D1(cb):
 
     return new_c
 
-def D2(cb):
-    """
-    90 degree counterclockwise turn of the D face
-    """
-    new_c = cb.copy()
-
-    new_c[15] = cb[51]
-    new_c[16] = cb[52]
-    new_c[17] = cb[53]
-    new_c[24] = cb[15]
-    new_c[25] = cb[16]
-    new_c[26] = cb[17]
-    new_c[27] = cb[29]
-    new_c[28] = cb[32]
-    new_c[29] = cb[35]
-    new_c[30] = cb[28]
-    new_c[31] = cb[31] # D center piece
-    new_c[32] = cb[34]
-    new_c[33] = cb[27]
-    new_c[34] = cb[30]
-    new_c[35] = cb[33]
-    new_c[42] = cb[24]
-    new_c[43] = cb[25]
-    new_c[44] = cb[26]
-    new_c[51] = cb[42]
-    new_c[52] = cb[43]
-    new_c[53] = cb[44]
-
-    return new_c
-
-def D3(cb):
+def D2(cube_obj):
     """
     180 degree turn of the D face
     """
+    cb = cube_obj.get_cb()
     new_c = cb.copy()
 
     new_c[15] = cb[42]
@@ -376,10 +354,42 @@ def D3(cb):
 
     return new_c
 
-def L1(cb):
+def D3(cube_obj):
+    """
+    90 degree counterclockwise turn of the D face
+    """
+    cb = cube_obj.get_cb()
+    new_c = cb.copy()
+
+    new_c[15] = cb[51]
+    new_c[16] = cb[52]
+    new_c[17] = cb[53]
+    new_c[24] = cb[15]
+    new_c[25] = cb[16]
+    new_c[26] = cb[17]
+    new_c[27] = cb[29]
+    new_c[28] = cb[32]
+    new_c[29] = cb[35]
+    new_c[30] = cb[28]
+    new_c[31] = cb[31] # D center piece
+    new_c[32] = cb[34]
+    new_c[33] = cb[27]
+    new_c[34] = cb[30]
+    new_c[35] = cb[33]
+    new_c[42] = cb[24]
+    new_c[43] = cb[25]
+    new_c[44] = cb[26]
+    new_c[51] = cb[42]
+    new_c[52] = cb[43]
+    new_c[53] = cb[44]
+
+    return new_c
+
+def L1(cube_obj):
     """
     90 degree clockwise turn of the L face
     """
+    cb = cube_obj.get_cb()
     new_c = cb.copy()
 
     new_c[0] = cb[53]
@@ -406,40 +416,11 @@ def L1(cb):
 
     return new_c
 
-def L2(cb):
-    """
-    90 degree counterclockwise turn of the L face
-    """
-    new_c = cb.copy()
-
-    new_c[0] = cb[18]
-    new_c[3] = cb[21]
-    new_c[6] = cb[24]
-    new_c[18] = cb[27]
-    new_c[21] = cb[30]
-    new_c[24] = cb[33]
-    new_c[27] = cb[53]
-    new_c[30] = cb[50]
-    new_c[33] = cb[47]
-    new_c[36] = cb[38]
-    new_c[37] = cb[41]
-    new_c[38] = cb[44]
-    new_c[39] = cb[37]
-    new_c[40] = cb[40] # L center piece
-    new_c[41] = cb[43]
-    new_c[42] = cb[36]
-    new_c[43] = cb[39]
-    new_c[44] = cb[42]
-    new_c[47] = cb[6]
-    new_c[50] = cb[3]
-    new_c[53] = cb[0]
-
-    return new_c
-
-def L3(cb):
+def L2(cube_obj):
     """
     180 degree turn of the L face
     """
+    cb = cube_obj.get_cb()
     new_c = cb.copy()
 
     new_c[0] = cb[27]
@@ -466,10 +447,42 @@ def L3(cb):
 
     return new_c
 
-def B1(cb):
+def L3(cube_obj):
+    """
+    90 degree counterclockwise turn of the L face
+    """
+    cb = cube_obj.get_cb()
+    new_c = cb.copy()
+
+    new_c[0] = cb[18]
+    new_c[3] = cb[21]
+    new_c[6] = cb[24]
+    new_c[18] = cb[27]
+    new_c[21] = cb[30]
+    new_c[24] = cb[33]
+    new_c[27] = cb[53]
+    new_c[30] = cb[50]
+    new_c[33] = cb[47]
+    new_c[36] = cb[38]
+    new_c[37] = cb[41]
+    new_c[38] = cb[44]
+    new_c[39] = cb[37]
+    new_c[40] = cb[40] # L center piece
+    new_c[41] = cb[43]
+    new_c[42] = cb[36]
+    new_c[43] = cb[39]
+    new_c[44] = cb[42]
+    new_c[47] = cb[6]
+    new_c[50] = cb[3]
+    new_c[53] = cb[0]
+
+    return new_c
+
+def B1(cube_obj):
     """
     90 degree clockwise turn of the B face
     """
+    cb = cube_obj.get_cb()
     new_c = cb.copy()
 
     new_c[0] = cb[11]
@@ -496,40 +509,11 @@ def B1(cb):
 
     return new_c
 
-def B2(cb):
-    """
-    90 degree counterclockwise turn of the B face
-    """
-    new_c = cb.copy()
-
-    new_c[0] = cb[42]
-    new_c[1] = cb[39]
-    new_c[2] = cb[36]
-    new_c[11] = cb[0]
-    new_c[14] = cb[1]
-    new_c[17] = cb[2]
-    new_c[33] = cb[17]
-    new_c[34] = cb[14]
-    new_c[35] = cb[11]
-    new_c[36] = cb[33]
-    new_c[39] = cb[34]
-    new_c[42] = cb[35]
-    new_c[45] = cb[47]
-    new_c[46] = cb[50]
-    new_c[47] = cb[53]
-    new_c[48] = cb[46]
-    new_c[49] = cb[49] # B center piece
-    new_c[50] = cb[52]
-    new_c[51] = cb[45]
-    new_c[52] = cb[48]
-    new_c[53] = cb[51]
-
-    return new_c
-
-def B3(cb):
+def B2(cube_obj):
     """
     180 degree turn of the B face
     """
+    cb = cube_obj.get_cb()
     new_c = cb.copy()
 
     new_c[0] = cb[35]
@@ -553,6 +537,37 @@ def B3(cb):
     new_c[51] = cb[47]
     new_c[52] = cb[46]
     new_c[53] = cb[45]
+
+    return new_c
+
+def B3(cube_obj):
+    """
+    90 degree counterclockwise turn of the B face
+    """
+    cb = cube_obj.get_cb()
+    new_c = cb.copy()
+
+    new_c[0] = cb[42]
+    new_c[1] = cb[39]
+    new_c[2] = cb[36]
+    new_c[11] = cb[0]
+    new_c[14] = cb[1]
+    new_c[17] = cb[2]
+    new_c[33] = cb[17]
+    new_c[34] = cb[14]
+    new_c[35] = cb[11]
+    new_c[36] = cb[33]
+    new_c[39] = cb[34]
+    new_c[42] = cb[35]
+    new_c[45] = cb[47]
+    new_c[46] = cb[50]
+    new_c[47] = cb[53]
+    new_c[48] = cb[46]
+    new_c[49] = cb[49] # B center piece
+    new_c[50] = cb[52]
+    new_c[51] = cb[45]
+    new_c[52] = cb[48]
+    new_c[53] = cb[51]
 
     return new_c
 
@@ -631,11 +646,14 @@ def execute_move(cube_obj, move_list):
     }
 
     for move in move_list.split():
+        if cube_obj.get_solved() and not cube_obj.is_test():
+            return
+
         if move in moves:
             print("move: %s" % move)
             move_str = moves.get(move, "Invalid move specification.\n")
             move_func = moves[move]
-            new_c = move_func(cube_obj.cb)
+            new_c = move_func(cube_obj)
 
             try:
                 assert(check_current_cube(new_c))
@@ -650,19 +668,18 @@ def execute_move(cube_obj, move_list):
             break;
 
 # # quick unit test
+# test = True
 # config1 = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
-# cube1 = Cube(config1)
-# print(cube1)
+# cube1 = Cube(config1, test)
 # print(check_current_cube(cube1.cb))
-# execute_move(cube1, "U1 U2 F1 F2 D1 D2 L1 L2 B1 B2 R1 R2")
-# execute_move(cube1, "U3 U3 F3 F3 D3 D3 L3 L3 B3 B3 R3 R3")
-# print(cube1.soln)
+# print(cube1)
+# execute_move(cube1, "U1 U3 F1 F3 D1 D3 L1 L3 B1 B3 R1 R3")
+# execute_move(cube1, "U2 U2 F2 F2 D2 D2 L2 L2 B2 B2 R2 R2")
 
-# # unit test 2 (it works!!!)
+# # unit test 2 (test from kociemba's example)
 # config2 = "FUUBUUDRBLBBBRLBLBFDDBFRUURFFDFDDFDUDDRLLLRRLLRLFBURFU"
 # cube2 = Cube(config2)
-# print(cube2)
 # print(check_current_cube(cube2.cb))
-# soln2 = "U1 F3 U2 F2 R2 D2 L1 F2 D2 R1 D3 B3 U2 B3 L3 D1 B3 L3 B3 U1"
+# print(cube2)
+# soln2 = "U1 F2 U3 F3 R3 D3 L1 F3 D3 R1 D2 B2 U3 B2 L2 D1 B2 L2 B2 U1"
 # execute_move(cube2, soln2)
-# print(cube2.soln)

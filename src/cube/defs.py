@@ -1,6 +1,10 @@
 from facelet import Facelet as Fc, Color as Cl
 
 
+# Fully solved cube state
+complete = [Cl.U] * 9 + [Cl.R] * 9 + [Cl.F] * 9
+complete += [Cl.D] * 9 + [Cl.L] * 9 + [Cl.B] * 9
+
 # Corner to cube piece positions
 cornerFc = set([
             tuple(sorted([Fc.U9, Fc.R1, Fc.F3])),

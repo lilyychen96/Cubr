@@ -1,13 +1,12 @@
 from facelet import Color as Cl, Corner as Cn, Edge as Ed
-from defs import cornerFc, edgeFc, cornerCl, edgeCl
-import string
+from defs import complete, cornerFc, edgeFc, cornerCl, edgeCl
 
 # @TODO: consolidate "unit tests" to different file
 # @TODO: eliminate print statements
 # @TODO: figure out actual error handling/logging...
 
 class Cube:
-    def __init__(self, config):
+    def __init__(self, config, test=False):
         self.cb = []
         self.cb += [Cl.U] * 9
         self.cb += [Cl.R] * 9
@@ -20,10 +19,12 @@ class Cube:
 
         # input configuration, should not change after assignment
         self.init_state = config
-        self.config = config
+        self.config = config # should change after each move
 
-        self.soln = ""
+        self.soln = "" # solution string output
         self.solved = False
+
+        self.test = test
 
     def __str__(self):
         """
@@ -90,28 +91,30 @@ class Cube:
 
     def check_cubies(self, cnrs, edgs):
         """
-        Validates the cubie pieces (8 corners and 12 edges).
+        Validates the cube state according to the cubie pieces (8 corners and 
+        12 edges).
         """
         corners = False
         edges = False
 
         # check for all corner cubies
-        count1 = 0
+        count = 0
         for k in cnrs:
             if k in cornerCl:
-                count1 += 1
+                count += 1
 
-        if count1 == 8: # expected number of corner cubies
+        if count == 8: # expected number of corner cubies
             corners = True
 
-        # check for all edge cubies
-        count2 = 0
-        for k in edgs:
-            if k in edgeCl:
-                count2 += 1
+        if corners:
+            # check for all edge cubies
+            count = 0
+            for k in edgs:
+                if k in edgeCl:
+                    count += 1
 
-        if count2 == 12: # expected number of edge cubies
-            edges = True
+            if count == 12: # expected number of edge cubies
+                edges = True
 
         return (corners, edges)
 
@@ -173,12 +176,10 @@ class Cube:
             for i in range(len(cb)):
                 face = str(cb[i])[-1]
                 new_config += face
-            self.config = new_config
 
             self.config = new_config
         except AssertionError:
             print("invalid corner and edge cubies!")
-
 
     def update_state(self, new_c):
         """
@@ -199,13 +200,13 @@ class Cube:
             self.cb = cb
             self.update_cubies()
             return True
-        else:
-            return False
+        
+        return False
 
     def reformat_config(self):
         """
-        Reformats the configuration such that printing is easier.
-        NOTE: This does not change the cube state.
+        Reformats the configuration for ease of printing to command line.
+        NOTE: This does NOT change the cube state.
 
         Before:
                       |.............|
@@ -327,6 +328,12 @@ class Cube:
 
         return s
 
+    def get_cb(self):
+        """
+        Retrieves copy of cubies from cube object
+        """
+        return self.cb
+
     def get_solved(self):
         """
         Retrives truth value of cube's solve state.
@@ -338,11 +345,10 @@ class Cube:
         Checks if the list representation of the cube configuration is fully
         solved and updates the truth value to self.solved.
         """
-        # if self.get_solved():
-        #     return
-
-        complete = [Cl.U] * 9 + [Cl.R] * 9 + [Cl.F] * 9
-        complete += [Cl.D] * 9 + [Cl.L] * 9 + [Cl.B] * 9
+        if self.get_solved() and not self.test:
+            # trimming off excess ending whitespace
+            self.soln = self.soln.rstrip()
+            return
 
         if self.verify_config():
             for i in range(len(complete)):
@@ -350,8 +356,9 @@ class Cube:
                     self.solved = False
                     return
             self.solved = True
-        else:
-            self.solved = False
+            return
+        
+        self.solved = False
 
     def add_move(self, move_str):
         """
@@ -359,10 +366,12 @@ class Cube:
         """
         self.soln += move_str + " "
         self.update_solved()
+
         if self.get_solved():
-            # trimming off excess ending whitespace
-            self.soln = self.soln.rstrip()
-            print("SOLVED!")
+            print("SOLVED! solution string: \n%s" % self.soln)
+
+    def is_test(self):
+        return self.test
 
 
 # # TODO: restructure
