@@ -119,18 +119,18 @@ class Edge(IntEnum):
     """
     The names of the edge positions of the cube.
     """
-    UR = 0
-    UF = 1
-    UL = 2
-    UB = 3
-    DR = 4
-    DF = 5
-    DL = 6
-    DB = 7
-    FR = 8
-    FL = 9
-    BR = 10
-    BL = 11
+    UR = 8
+    UF = 9
+    UL = 10
+    UB = 11
+    DR = 12
+    DF = 13
+    DL = 14
+    DB = 15
+    FR = 16
+    FL = 17
+    BR = 18
+    BL = 19
 
 class Move(IntEnum):
     """

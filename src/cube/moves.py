@@ -1,5 +1,6 @@
-from cube import Cube
+from cube import Cube, find_edge
 from facelet import Move as Mv, Color as Cl, Corner as Cn, Edge as Ed
+import time
 
 
 """
@@ -573,14 +574,8 @@ def B3(cube_obj):
 
 def check_current_cube(cb):
     """
-    Check if
+    Check if current cube state is valid.
     """
-    # try:
-    #     assert(type(cube_obj) == Cube)
-    # except AssertionError:
-    #     print("input is not Class Cube, is type %s" % type(cube_obj))
-
-    # cb = cube_obj.cb
     try:
         assert(type(cb) == list)
     except AssertionError:
@@ -618,12 +613,20 @@ def check_current_cube(cb):
         return True
     return False
 
-def execute_move(cube_obj, move_list):
+def execute_moves(cube_obj, move_list):
     """
-    Executes the specified move on the cube cube_obj.
+    Executes the specified move(s) on the cube cube_obj.
     NOTE: Python does NOT have switch-case functionality; official docs suggest
     using if-elif-...-else but this feels inelegant.
     """
+    if type(move_list) == str:
+        move_list = move_list.split()
+    
+    try:
+        assert(type(move_list) == list)
+    except AssertionError:
+        print("move list is not type list, is of type %s" % type(move_list))
+
     moves = {
         "U1": U1,
         "U2": U2,
@@ -645,7 +648,7 @@ def execute_move(cube_obj, move_list):
         "B3": B3
     }
 
-    for move in move_list.split():
+    for move in move_list:
         if cube_obj.get_solved() and not cube_obj.is_test():
             return
 
@@ -663,23 +666,26 @@ def execute_move(cube_obj, move_list):
             except AssertionError:
                 print("Move failed!!! %s\n" % move_str)
 
+            # time.sleep(0.5)
         else:
             print("invalid move: %s" % move)
             break;
 
-# # quick unit test
+# quick unit test
 # test = True
 # config1 = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
 # cube1 = Cube(config1, test)
-# print(check_current_cube(cube1.cb))
-# print(cube1)
-# execute_move(cube1, "U1 U3 F1 F3 D1 D3 L1 L3 B1 B3 R1 R3")
-# execute_move(cube1, "U2 U2 F2 F2 D2 D2 L2 L2 B2 B2 R2 R2")
+# # print(check_current_cube(cube1.cb))
+# # print(cube1)
+# moves1 = "U1 U3 F1 F3 D1 D3 L1 L3 B1 B3 R1 R3"
+# execute_moves(cube1, moves1.split())
+# moves2 = "U2 U2 F2 F2 D2 D2 L2 L2 B2 B2 R2 R2"
+# execute_moves(cube1, moves2.split())
 
 # # unit test 2 (test from kociemba's example)
 # config2 = "FUUBUUDRBLBBBRLBLBFDDBFRUURFFDFDDFDUDDRLLLRRLLRLFBURFU"
 # cube2 = Cube(config2)
-# print(check_current_cube(cube2.cb))
-# print(cube2)
+# # print(check_current_cube(cube2.cb))
+# # print(cube2)
 # soln2 = "U1 F2 U3 F3 R3 D3 L1 F3 D3 R1 D2 B2 U3 B2 L2 D1 B2 L2 B2 U1"
-# execute_move(cube2, soln2)
+# execute_moves(cube2, soln2.split())
