@@ -1,6 +1,5 @@
-from cube import Cube, find_edge
+from cube import Cube
 from facelet import Move as Mv, Color as Cl, Corner as Cn, Edge as Ed
-import time
 
 
 """
@@ -653,7 +652,6 @@ def execute_moves(cube_obj, move_list):
             return
 
         if move in moves:
-            print("move: %s" % move)
             move_str = moves.get(move, "Invalid move specification.\n")
             move_func = moves[move]
             new_c = move_func(cube_obj)
@@ -661,12 +659,13 @@ def execute_moves(cube_obj, move_list):
             try:
                 assert(check_current_cube(new_c))
                 cube_obj.update_state(new_c)
-                print(cube_obj)
+                # @NOTE: uncomment to display move and cube state after each move
+                # print("move: %s" % move)
+                # print(cube_obj)
                 cube_obj.add_move(move)
             except AssertionError:
                 print("Move failed!!! %s\n" % move_str)
 
-            # time.sleep(0.5)
         else:
             print("invalid move: %s" % move)
             break;

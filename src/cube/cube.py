@@ -1,9 +1,6 @@
 from facelet import Color as Cl, Corner as Cn, Edge as Ed
 from defs import complete, cornerFc, edgeFc, cornerCl, edgeCl
 
-# @TODO: consolidate "unit tests" to different file
-# @TODO: eliminate print statements
-# @TODO: figure out actual error handling/logging...
 
 class Cube:
     def __init__(self, config, test=False):

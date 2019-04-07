@@ -5,9 +5,10 @@ from moves import execute_moves
 from cube import Cube, find_edge, find_corner
 from facelet import Move as Mv, Color as Cl, Corner as Cn, Edge as Ed
 
-# white cross
-# white corners
 
+"""
+white cross: part 1 of first layer algorithms
+"""
 def is_white_cross(cube_state, cubies):
     """
     Checks if the cube has reached the "white cross" state
@@ -33,7 +34,8 @@ def move_DF(cube_obj, loc):
                 return ["R3", "F1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UR])
     
     elif loc == Ed.UF:
         try:
@@ -44,7 +46,8 @@ def move_DF(cube_obj, loc):
                 return ["U1", "L1", "F3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UF])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UF])
     
     elif loc == Ed.UL:
         try:
@@ -55,7 +58,8 @@ def move_DF(cube_obj, loc):
                 return ["L1", "F3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UL])
     
     elif loc == Ed.UB:
         try:
@@ -66,7 +70,8 @@ def move_DF(cube_obj, loc):
                 return ["B1", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UB])
     
     elif loc == Ed.DR:
         try:
@@ -77,7 +82,8 @@ def move_DF(cube_obj, loc):
                 return ["R1", "F1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.DR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.DR])
     
     elif loc == Ed.DF:
         try:
@@ -89,7 +95,8 @@ def move_DF(cube_obj, loc):
                 return []
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.DF])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.DF])
     
     elif loc == Ed.DL:
         try:
@@ -100,7 +107,8 @@ def move_DF(cube_obj, loc):
                 return ["L1", "F3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.DL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.DL])
     
     elif loc == Ed.DB:
         try:
@@ -111,7 +119,8 @@ def move_DF(cube_obj, loc):
                 return ["B1", "R1", "D3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.DB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.DB])
     
     elif loc == Ed.FR:
         try:
@@ -122,7 +131,8 @@ def move_DF(cube_obj, loc):
                 return ["F"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.FR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.FR])
     
     elif loc == Ed.FL:
         try:
@@ -133,7 +143,8 @@ def move_DF(cube_obj, loc):
                 return ["F3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.FL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.FL])
     
     elif loc == Ed.BR:
         try:
@@ -144,7 +155,8 @@ def move_DF(cube_obj, loc):
                 return ["R1", "D3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.BR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.BR])
     
     else: #if loc == Ed.BL
         try:
@@ -155,7 +167,8 @@ def move_DF(cube_obj, loc):
                 return ["L3", "D1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.BL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.BL])
 
     return []
 
@@ -174,7 +187,8 @@ def move_DL(cube_obj, loc):
                 return ["U3", "B1", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UR])
     
     elif loc == Ed.UF:
         try:
@@ -185,7 +199,8 @@ def move_DL(cube_obj, loc):
                 return ["U2", "B1", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UF])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UF])
     
     elif loc == Ed.UL:
         try:
@@ -196,7 +211,8 @@ def move_DL(cube_obj, loc):
                 return ["U1", "B1", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UL])
     
     elif loc == Ed.UB:
         try:
@@ -207,7 +223,8 @@ def move_DL(cube_obj, loc):
                 return ["B1", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UB])
     
     elif loc == Ed.DR:
         try:
@@ -218,7 +235,8 @@ def move_DL(cube_obj, loc):
                 return ["R2", "U3", "B1", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.DR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.DR])
     
     elif loc == Ed.DF:
         try:
@@ -227,7 +245,8 @@ def move_DL(cube_obj, loc):
             return []
 
         except AssertionError:
-            print("should be (%s, %s); is (%s, %s)" % (tuple(sorted([Cl.D, Cl.B])), cubies[Ed.DF]))
+            print("should be (%s, %s); is (%s, %s)" 
+                % (tuple(sorted([Cl.D, Cl.B])), cubies[Ed.DF]))
     
     elif loc == Ed.DL:
         try:
@@ -239,7 +258,8 @@ def move_DL(cube_obj, loc):
                 return []
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.DL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.DL])
     
     elif loc == Ed.DB:
         try:
@@ -250,7 +270,8 @@ def move_DL(cube_obj, loc):
                 return ["B3", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.DB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.DB])
     
     elif loc == Ed.FR:
         try:
@@ -261,7 +282,8 @@ def move_DL(cube_obj, loc):
                 return ["R1", "U3", "B1", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.FR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.FR])
     
     elif loc == Ed.FL:
         try:
@@ -272,7 +294,8 @@ def move_DL(cube_obj, loc):
                 return ["L3", "U1", "B1", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.FL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.FL])
     
     elif loc == Ed.BR:
         try:
@@ -283,7 +306,8 @@ def move_DL(cube_obj, loc):
                 return ["B2", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.BR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.BR])
     
     else: #if loc == Ed.BL
         try:
@@ -294,7 +318,8 @@ def move_DL(cube_obj, loc):
                 return ["L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.BL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.BL])
 
     return []
 
@@ -313,7 +338,8 @@ def move_DB(cube_obj, loc):
                 return ["R1", "B3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UR])
     
     elif loc == Ed.UF:
         try:
@@ -324,7 +350,8 @@ def move_DB(cube_obj, loc):
                 return ["U3", "R1", "B3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UF])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UF])
     
     elif loc == Ed.UL:
         try:
@@ -335,7 +362,8 @@ def move_DB(cube_obj, loc):
                 return ["U2", "R1", "B3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UL])
     
     elif loc == Ed.UB:
         try:
@@ -346,7 +374,8 @@ def move_DB(cube_obj, loc):
                 return ["U1", "R1", "B3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UB])
     
     elif loc == Ed.DR:
         try:
@@ -357,7 +386,8 @@ def move_DB(cube_obj, loc):
                 return ["R3", "B3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.DR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.DR])
     
     elif loc == Ed.DF:
         try:
@@ -366,7 +396,8 @@ def move_DB(cube_obj, loc):
             return []
 
         except AssertionError:
-            print("should be (%s, %s); is (%s, %s)" % (tuple(sorted([Cl.D, Cl.B])), cubies[Ed.DF]))
+            print("should be (%s, %s); is (%s, %s)" 
+                % (tuple(sorted([Cl.D, Cl.B])), cubies[Ed.DF]))
     
     elif loc == Ed.DL:
         try:
@@ -375,7 +406,8 @@ def move_DB(cube_obj, loc):
             return []
 
         except AssertionError:
-            print("should be (%s, %s); is (%s, %s)" % (tuple(sorted([Cl.D, Cl.L])), cubies[Ed.DL]))
+            print("should be (%s, %s); is (%s, %s)" 
+                % (tuple(sorted([Cl.D, Cl.L])), cubies[Ed.DL]))
     
     elif loc == Ed.DB:
         try:
@@ -387,7 +419,8 @@ def move_DB(cube_obj, loc):
                 return []
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.DL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.DL])
     
     elif loc == Ed.FR:
         try:
@@ -398,7 +431,8 @@ def move_DB(cube_obj, loc):
                 return ["R2", "B3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.FR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.FR])
     
     elif loc == Ed.FL:
         try:
@@ -409,7 +443,8 @@ def move_DB(cube_obj, loc):
                 return ["D2", "F3", "D2"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.FL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.FL])
     
     elif loc == Ed.BR:
         try:
@@ -420,7 +455,8 @@ def move_DB(cube_obj, loc):
                 return ["B1", "U1", "R1", "B3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.BR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.BR])
     
     else: #if loc == Ed.BL
         try:
@@ -431,7 +467,8 @@ def move_DB(cube_obj, loc):
                 return ["B3", "U1", "R1", "B3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.BL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.BL])
 
     return []
 
@@ -450,7 +487,8 @@ def move_DR(cube_obj, loc):
                 return ["R1", "D1", "B3", "D3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UR])
     
     elif loc == Ed.UF:
         try:
@@ -461,7 +499,8 @@ def move_DR(cube_obj, loc):
                 return ["U2", "B3", "R1", "B1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UF])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UF])
     
     elif loc == Ed.UL:
         try:
@@ -472,7 +511,8 @@ def move_DR(cube_obj, loc):
                 return ["U1", "B3", "R1", "B1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UL])
     
     elif loc == Ed.UB:
         try:
@@ -483,7 +523,8 @@ def move_DR(cube_obj, loc):
                 return ["B3", "R1", "B1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.UB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.UB])
     
     elif loc == Ed.DR:
         try:
@@ -495,7 +536,8 @@ def move_DR(cube_obj, loc):
                 return []
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.DR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.DR])
     
     elif loc == Ed.DF:
         try:
@@ -504,7 +546,8 @@ def move_DR(cube_obj, loc):
             return []
 
         except AssertionError:
-            print("should be (%s, %s); is (%s, %s)" % (tuple(sorted([Cl.D, Cl.B])), cubies[Ed.DF]))
+            print("should be (%s, %s); is (%s, %s)" 
+                % (tuple(sorted([Cl.D, Cl.B])), cubies[Ed.DF]))
     
     elif loc == Ed.DL:
         try:
@@ -513,7 +556,8 @@ def move_DR(cube_obj, loc):
             return []
 
         except AssertionError:
-            print("should be (%s, %s); is (%s, %s)" % (tuple(sorted([Cl.D, Cl.L])), cubies[Ed.DL]))
+            print("should be (%s, %s); is (%s, %s)" 
+                % (tuple(sorted([Cl.D, Cl.L])), cubies[Ed.DL]))
     
     elif loc == Ed.DB:
         try:
@@ -522,7 +566,8 @@ def move_DR(cube_obj, loc):
             return []
 
         except AssertionError:
-            print("should be (%s, %s); is (%s, %s)" % (tuple(sorted([Cl.D, Cl.B])), cubies[Ed.DB]))
+            print("should be (%s, %s); is (%s, %s)" 
+                % (tuple(sorted([Cl.D, Cl.B])), cubies[Ed.DB]))
     
     elif loc == Ed.FR:
         try:
@@ -533,7 +578,8 @@ def move_DR(cube_obj, loc):
                 return ["D3", "F1", "D1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.FR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.FR])
     
     elif loc == Ed.FL:
         try:
@@ -544,7 +590,8 @@ def move_DR(cube_obj, loc):
                 return ["D3", "F3", "D1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.FL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.FL])
     
     elif loc == Ed.BR:
         try:
@@ -555,29 +602,27 @@ def move_DR(cube_obj, loc):
                 return ["R1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.BR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.BR])
     
     else: #if loc == Ed.BL
         try:
             assert((cb[39] == Cl.D) or (cb[50] == Cl.D))
             if (cb[39] == Cl.D):
-                return ["D1", "B1", "D3"]
-            else: # cb[50] == Cl.D)
                 return ["D1", "L3", "D3"]
+            else: # cb[50] == Cl.D)
+                return ["D1", "B1", "D3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s)" % cubies[Ed.BL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s)" 
+                % cubies[Ed.BL])
 
     return []
 
 def white_cross(cube_obj):
     """
     Outputs the moves list for solving the down face edge cubies according to
-    the initial cube state. Must check if the pieces at 28, 30, 34, and 32
-    match piece 31 (D center piece).
-    NOTE: cube_state would be the c list of the Cube object
-        example: cube_obj = cube.Cube(config); cube_state = cube_obj.cb
-
+    the initial cube state
     """
     # search for cubies and move into place
     # edge DF
@@ -585,7 +630,7 @@ def white_cross(cube_obj):
     cubies = cube_obj.cubies
 
     if is_white_cross(cube_state, cubies):
-        return cube_obj
+        return
 
     if not (cubies[Ed.DF] == tuple(sorted([Cl.D, Cl.F]))):
         loc = find_edge(cubies, tuple(sorted([Cl.D, Cl.F])))
@@ -600,7 +645,7 @@ def white_cross(cube_obj):
     cubies = cube_obj.cubies
 
     if is_white_cross(cube_state, cubies):
-        return cube_obj
+        return
 
     if not (cubies[Ed.DL] == tuple(sorted([Cl.D, Cl.L]))):
         loc = find_edge(cubies, tuple(sorted([Cl.D, Cl.L])))
@@ -615,7 +660,7 @@ def white_cross(cube_obj):
     cubies = cube_obj.cubies
 
     if is_white_cross(cube_state, cubies):
-        return cube_obj
+        return
 
     if not (cubies[Ed.DB] == tuple(sorted([Cl.D, Cl.B]))):
         loc = find_edge(cubies, tuple(sorted([Cl.D, Cl.B])))
@@ -630,7 +675,7 @@ def white_cross(cube_obj):
     cubies = cube_obj.cubies
 
     if is_white_cross(cube_state, cubies):
-        return cube_obj
+        return
 
     if not (cubies[Ed.DR] == tuple(sorted([Cl.D, Cl.R]))):
         loc = find_edge(cubies, tuple(sorted([Cl.D, Cl.R])))
@@ -645,6 +690,9 @@ def white_cross(cube_obj):
     except AssertionError:
         print("did not successfully reach white cross state\n")
 
+"""
+white corners: part 2 of first layer algorithms
+"""
 def is_white_corners(cube_state, cubies):
     """
     Checks if the cube has reached the "white corners" state
@@ -672,7 +720,8 @@ def move_DFR(cube_obj, loc):
                 return ["F3", "U3", "F1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.URF])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.URF])
     
     elif loc == Cn.UFL:
         try:
@@ -685,7 +734,8 @@ def move_DFR(cube_obj, loc):
                 return ["R1", "U3", "R3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.UFL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.UFL])
     
     elif loc == Cn.ULB:
         try:
@@ -698,7 +748,8 @@ def move_DFR(cube_obj, loc):
                 return ["R1", "U2", "R3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.ULB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.ULB])
     
     elif loc == Cn.UBR:
         try:
@@ -711,7 +762,8 @@ def move_DFR(cube_obj, loc):
                 return ["U2", "R1", "U3", "R3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.UBR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.UBR])
     
     elif loc == Cn.DFR:
         try:
@@ -725,7 +777,8 @@ def move_DFR(cube_obj, loc):
                 return []
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.DFR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.DFR])
 
     elif loc == Cn.DLF:
         try:
@@ -738,7 +791,8 @@ def move_DFR(cube_obj, loc):
                 return ["L3", "R1", "U2", "R3", "U1", "R1", "U3", "R3", "L1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.DLF])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.DLF])
 
     elif loc == Cn.DBL:
         try:
@@ -751,7 +805,8 @@ def move_DFR(cube_obj, loc):
                 return ["B3", "R1", "U1", "R3", "B1", "U1", "R1", "U3", "R3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.DBL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.DBL])
 
     else: #if loc == Cn.DRB
         try:
@@ -764,7 +819,8 @@ def move_DFR(cube_obj, loc):
                 return ["F3", "B1", "U1", "B3", "F1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.DRB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.DRB])
 
     return []
 
@@ -785,7 +841,8 @@ def move_DLF(cube_obj, loc):
                 return ["U2", "F1", "U3", "F3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.URF])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.URF])
     
     elif loc == Cn.UFL:
         try:
@@ -798,7 +855,8 @@ def move_DLF(cube_obj, loc):
                 return ["U1", "F1", "U3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.UFL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.UFL])
     
     elif loc == Cn.ULB:
         try:
@@ -811,7 +869,8 @@ def move_DLF(cube_obj, loc):
                 return ["F1", "U3", "F3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.ULB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.ULB])
     
     elif loc == Cn.UBR:
         try:
@@ -824,7 +883,8 @@ def move_DLF(cube_obj, loc):
                 return ["U3", "F1", "U3", "F3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.UBR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.UBR])
     
     elif loc == Cn.DFR:
         try:
@@ -832,7 +892,8 @@ def move_DLF(cube_obj, loc):
             return []
 
         except AssertionError:
-            print("should be (%s, %s, %s); is (%s, %s, %s)" % (tuple(sorted([Cl.D, Cl.F, Cl.R])), cubies[Ed.DFR]))
+            print("should be (%s, %s, %s); is (%s, %s, %s)" 
+                % (tuple(sorted([Cl.D, Cl.F, Cl.R])), cubies[Ed.DFR]))
 
     elif loc == Cn.DLF:
         try:
@@ -846,7 +907,8 @@ def move_DLF(cube_obj, loc):
                 return []
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.DLF])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.DLF])
 
     elif loc == Cn.DBL:
         try:
@@ -859,7 +921,8 @@ def move_DLF(cube_obj, loc):
                 return ["B3", "U1", "B1", "U2", "L3", "U1", "L1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.DBL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.DBL])
 
     else: #if loc == Cn.DRB
         try:
@@ -872,7 +935,8 @@ def move_DLF(cube_obj, loc):
                 return ["B1", "U1", "L3", "U1", "B3", "L1"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.DRB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.DRB])
 
     return []
 
@@ -893,7 +957,8 @@ def move_DBL(cube_obj, loc):
                 return ["U3", "L1", "U3", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.URF])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.URF])
     
     elif loc == Cn.UFL:
         try:
@@ -906,7 +971,8 @@ def move_DBL(cube_obj, loc):
                 return ["U1", "F1", "U3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.UFL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.UFL])
     
     elif loc == Cn.ULB:
         try:
@@ -919,7 +985,8 @@ def move_DBL(cube_obj, loc):
                 return ["U1", "L1", "U3", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.ULB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.ULB])
     
     elif loc == Cn.UBR:
         try:
@@ -932,7 +999,8 @@ def move_DBL(cube_obj, loc):
                 return ["L1", "U3", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.UBR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.UBR])
     
     elif loc == Cn.DFR:
         try:
@@ -940,7 +1008,8 @@ def move_DBL(cube_obj, loc):
             return []
 
         except AssertionError:
-            print("should be (%s, %s, %s); is (%s, %s, %s)" % (tuple(sorted([Cl.D, Cl.F, Cl.R])), cubies[Ed.DFR]))
+            print("should be (%s, %s, %s); is (%s, %s, %s)" 
+                % (tuple(sorted([Cl.D, Cl.F, Cl.R])), cubies[Ed.DFR]))
 
     elif loc == Cn.DLF:
         try:
@@ -948,7 +1017,8 @@ def move_DBL(cube_obj, loc):
             return []
 
         except AssertionError:
-            print("should be (%s, %s, %s); is (%s, %s, %s)" % (tuple(sorted([Cl.D, Cl.L, Cl.F])), cubies[Ed.DLF]))
+            print("should be (%s, %s, %s); is (%s, %s, %s)" 
+                % (tuple(sorted([Cl.D, Cl.L, Cl.F])), cubies[Ed.DLF]))
 
     elif loc == Cn.DBL:
         try:
@@ -962,7 +1032,8 @@ def move_DBL(cube_obj, loc):
                 return []
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.DBL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.DBL])
 
     else: #if loc == Cn.DRB
         try:
@@ -975,7 +1046,8 @@ def move_DBL(cube_obj, loc):
                 return ["B1", "U3", "B3", "L1", "U2", "L3", "U1", "L1", "U3", "L3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.DRB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.DRB])
 
     return []
 
@@ -996,7 +1068,8 @@ def move_DRB(cube_obj, loc):
                 return ["B1", "U3", "B3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.URF])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.URF])
     
     elif loc == Cn.UFL:
         try:
@@ -1009,7 +1082,8 @@ def move_DRB(cube_obj, loc):
                 return ["B1", "U2", "B3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.UFL])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.UFL])
     
     elif loc == Cn.ULB:
         try:
@@ -1022,7 +1096,8 @@ def move_DRB(cube_obj, loc):
                 return ["U2", "B1", "U3", "B3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.ULB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.ULB])
     
     elif loc == Cn.UBR:
         try:
@@ -1035,7 +1110,8 @@ def move_DRB(cube_obj, loc):
                 return ["U1", "B1", "U3", "B3"]
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.UBR])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.UBR])
     
     elif loc == Cn.DFR:
         try:
@@ -1043,7 +1119,8 @@ def move_DRB(cube_obj, loc):
             return []
 
         except AssertionError:
-            print("should be (%s, %s, %s); is (%s, %s, %s)" % (tuple(sorted([Cl.D, Cl.F, Cl.R])), cubies[Ed.DFR]))
+            print("should be (%s, %s, %s); is (%s, %s, %s)" 
+                % (tuple(sorted([Cl.D, Cl.F, Cl.R])), cubies[Ed.DFR]))
 
     elif loc == Cn.DLF:
         try:
@@ -1051,7 +1128,8 @@ def move_DRB(cube_obj, loc):
             return []
 
         except AssertionError:
-            print("should be (%s, %s, %s); is (%s, %s, %s)" % (tuple(sorted([Cl.D, Cl.L, Cl.F])), cubies[Ed.DLF]))
+            print("should be (%s, %s, %s); is (%s, %s, %s)" 
+                % (tuple(sorted([Cl.D, Cl.L, Cl.F])), cubies[Ed.DLF]))
 
     elif loc == Cn.DBL:
         try:
@@ -1059,7 +1137,8 @@ def move_DRB(cube_obj, loc):
             return []
 
         except AssertionError:
-            print("should be (%s, %s, %s); is (%s, %s, %s)" % (tuple(sorted([Cl.D, Cl.B, Cl.L])), cubies[Ed.DBL]))
+            print("should be (%s, %s, %s); is (%s, %s, %s)" 
+                % (tuple(sorted([Cl.D, Cl.B, Cl.L])), cubies[Ed.DBL]))
 
     else: #if loc == Cn.DRB
         try:
@@ -1073,14 +1152,15 @@ def move_DRB(cube_obj, loc):
                 return []
 
         except AssertionError:
-            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" % cubies[Cn.DRB])
+            print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
+                % cubies[Cn.DRB])
 
     return []
 
 def white_corners(cube_obj):
     """
     Outputs the moves list for solving the down face corner cubies after
-    solving for the white cross (front edges).
+    solving for the white cross
     """
     # search for cubies and move into place
     # corner DFR
@@ -1088,12 +1168,13 @@ def white_corners(cube_obj):
     cubies = cube_obj.cubies
 
     if is_white_corners(cube_state, cubies):
-        return cube_obj
+        return
 
     if not (cubies[Cn.DFR] == tuple(sorted([Cl.D, Cl.F, Cl.R]))):
         loc = find_corner(cubies, tuple(sorted([Cl.D, Cl.F, Cl.R])))
         if loc is None:
-            print("can't find corner (%s, %s, %s)" % tuple(sorted([Cl.D, Cl.F, Cl.R])))
+            print("can't find corner (%s, %s, %s)" 
+                % tuple(sorted([Cl.D, Cl.F, Cl.R])))
         else:
             move_list = move_DFR(cube_obj, loc)
             execute_moves(cube_obj, move_list)
@@ -1103,12 +1184,13 @@ def white_corners(cube_obj):
     cubies = cube_obj.cubies
 
     if is_white_corners(cube_state, cubies):
-        return cube_obj
+        return
 
     if not (cubies[Cn.DLF] == tuple(sorted([Cl.D, Cl.L, Cl.F]))):
         loc = find_corner(cubies, tuple(sorted([Cl.D, Cl.L, Cl.F])))
         if loc is None:
-            print("can't find corner (%s, %s, %s)" % tuple(sorted([Cl.D, Cl.L, Cl.F])))
+            print("can't find corner (%s, %s, %s)" 
+                % tuple(sorted([Cl.D, Cl.L, Cl.F])))
         else:
             move_list = move_DLF(cube_obj, loc)
             execute_moves(cube_obj, move_list)
@@ -1118,12 +1200,13 @@ def white_corners(cube_obj):
     cubies = cube_obj.cubies
 
     if is_white_corners(cube_state, cubies):
-        return cube_obj
+        return
 
     if not (cubies[Cn.DBL] == tuple(sorted([Cl.D, Cl.B, Cl.L]))):
         loc = find_corner(cubies, tuple(sorted([Cl.D, Cl.B, Cl.L])))
         if loc is None:
-            print("can't find corner (%s, %s, %s)" % tuple(sorted([Cl.D, Cl.B, Cl.L])))
+            print("can't find corner (%s, %s, %s)" 
+                % tuple(sorted([Cl.D, Cl.B, Cl.L])))
         else:
             move_list = move_DBL(cube_obj, loc)
             execute_moves(cube_obj, move_list)
@@ -1133,12 +1216,13 @@ def white_corners(cube_obj):
     cubies = cube_obj.cubies
 
     if is_white_corners(cube_state, cubies):
-        return cube_obj
+        return
 
     if not (cubies[Cn.DRB] == tuple(sorted([Cl.D, Cl.R, Cl.B]))):
         loc = find_corner(cubies, tuple(sorted([Cl.D, Cl.R, Cl.B])))
         if loc is None:
-            print("can't find corner (%s, %s, %s)" % tuple(sorted([Cl.D, Cl.R, Cl.B])))
+            print("can't find corner (%s, %s, %s)" 
+                % tuple(sorted([Cl.D, Cl.R, Cl.B])))
         else:
             move_list = move_DRB(cube_obj, loc)
             execute_moves(cube_obj, move_list)
@@ -1148,9 +1232,16 @@ def white_corners(cube_obj):
     except AssertionError:
         print("did not successfully reach white corners state\n")
 
-def layer1(cube_state):
+def layer1(cube_obj):
     """
-    Calls the solving algorithms for the white cross and white corners
+    Calls the solving algorithms for the first layer: white cross and white
+    corners
     """
-    white_cross(cube_state)
-    white_corners(cube_state)
+    white_cross(cube_obj)
+    print("white cross completed: \n")
+    print(cube_obj)
+    # print("\n\n")
+    white_corners(cube_obj)
+    print("white corners completed: \n")
+    print(cube_obj)
+    # print("\n\n")

@@ -1,6 +1,5 @@
 # Based on hkoceimba's cube implementation
 # https://github.com/hkociemba/RubiksCube-TwophaseSolver/blob/master/enums.py
-
 from enum import IntEnum
 
 
