@@ -2,6 +2,7 @@
 import cv2
 import numpy as np
 import math
+import twoPhase.solver as sv
 
 ################### GLOBAL VARIABLES ###################
 SQUARELEN = 133
@@ -231,6 +232,10 @@ def main():
 	    #write logic for enter key
 	    if key == 13:
 	    	print(OUTPUT)
+	    	cubestring = 'DUUBULDBFRBFRRULLLBRDFFFBLURDBFDFDRFRULBLUFDURRBLBDUDL'
+			a = sv.solve(cubestring, 20, 2)  # solve with a maximum of 20 moves and a timeout of 2 seconds for example
+			print(a)
+			print(a)
 	    	break
 
 
