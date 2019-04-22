@@ -6,18 +6,18 @@ boolean newData = false;
 
 const int turnSpeed = 1000;
 const int turnDelay = 1500;
-const int stepPinF = 6; 
-const int dirPinF = 7; 
-const int stepPinR= 2; 
-const int dirPinR = 3; 
-const int stepPinL= 4; 
-const int dirPinL = 5; 
-const int stepPinB= 8; 
-const int dirPinB = 9;
-const int stepPinU= 10; 
-const int dirPinU = 11;
-const int stepPinD= 12; 
-const int dirPinD = 13;   
+const int stepPinF = 8; 
+const int dirPinF = 9; 
+const int stepPinR= 6; 
+const int dirPinR = 7; 
+const int stepPinL= 12; 
+const int dirPinL = 13; 
+const int stepPinB= 4; 
+const int dirPinB = 5;
+const int stepPinU= 2; 
+const int dirPinU = 3;
+const int stepPinD= 10; 
+const int dirPinD = 11;   
 
 
 void setup() {
