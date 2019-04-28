@@ -363,8 +363,8 @@ class Cube:
         self.total += 1
         self.update_solved()
 
-        if self.get_solved():
-            print("SOLVED! solution string: \n%s" % self.soln)
+        # if self.get_solved():
+        #     print("SOLVED! solution string: \n%s" % self.soln)
 
     def is_test(self):
         """

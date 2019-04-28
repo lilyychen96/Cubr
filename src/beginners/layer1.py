@@ -3,7 +3,7 @@ sys.path.insert(0, os.path.abspath('src/cube'))
 
 from moves import execute_moves
 from cube import Cube, find_edge, find_corner
-from facelet import Move as Mv, Color as Cl, Corner as Cn, Edge as Ed
+from facelet import Color as Cl, Corner as Cn, Edge as Ed
 
 
 """
@@ -686,9 +686,8 @@ def white_cross(cube_obj):
 
     try:
         assert(is_white_cross(cube_obj.cb))
-        print("white cross completed: \n")
-        print(cube_obj)
-        print("\n\n\n")
+        # print("white cross completed", end="...")
+        # print(cube_obj)
     except AssertionError:
         print("did not successfully reach white cross state\n")
 
@@ -830,7 +829,6 @@ def move_DLF(cube_obj, loc):
     """
     Returns the moves list to orient and position the DFR corner
     """
-    print(loc)
     cb = cube_obj.get_cb()
     cubies = cube_obj.cubies
     if loc == Cn.URF:
@@ -1167,7 +1165,6 @@ def white_corners(cube_obj):
     """
     # search for cubies and move into place
     # corner DFR
-    print("DFR")
     cstate = cube_obj.cb
     cubies = cube_obj.cubies
 
@@ -1184,7 +1181,6 @@ def white_corners(cube_obj):
             execute_moves(cube_obj, move_list)
 
     # corner DLF
-    print("DLF")
     cstate = cube_obj.cb
     cubies = cube_obj.cubies
 
@@ -1201,7 +1197,6 @@ def white_corners(cube_obj):
             execute_moves(cube_obj, move_list)
 
     # corner DBL
-    print("DBL")
     cstate = cube_obj.cb
     cubies = cube_obj.cubies
 
@@ -1218,7 +1213,6 @@ def white_corners(cube_obj):
             execute_moves(cube_obj, move_list)
 
     # corner DRB
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDRB")
     cstate = cube_obj.cb
     cubies = cube_obj.cubies
 
@@ -1231,15 +1225,13 @@ def white_corners(cube_obj):
             print("can't find corner (%s, %s, %s)" 
                 % tuple(sorted([Cl.D, Cl.R, Cl.B])))
         else:
-            print("DRB")
-            print(loc)
             move_list = move_DRB(cube_obj, loc)
             execute_moves(cube_obj, move_list)
 
     try:
         assert(is_white_corners(cube_obj.cb))
-        print("white corners completed: \n")
-        print(cube_obj)
+        # print("white corners completed", end="...")
+        # print(cube_obj)
     except AssertionError:
         print("did not successfully reach white corners state\n")
 

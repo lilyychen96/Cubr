@@ -3,7 +3,7 @@ sys.path.insert(0, os.path.abspath('src/cube'))
 
 from moves import execute_moves
 from cube import Cube, find_edge, find_corner
-from facelet import Move as Mv, Color as Cl, Corner as Cn, Edge as Ed
+from facelet import Color as Cl, Edge as Ed
 from layer1 import is_white_corners
 
 
@@ -421,7 +421,7 @@ def move_BR(cube_obj, loc):
                 return ["U1", "B1", "U3", "B3", "U3", "R3", "U1", "R1"]
             else: # cb[46] == Cl.B)
                 assert(cb[1] == Cl.R)
-                return ["U1", "L1", "U3", "L3", "U3", "B3", "U1", "B1"]
+                return ["U3", "R3", "U1", "R1", "U1", "B1", "U3", "B3"]
 
         except AssertionError:
             print("invalid colors (should be Cl.B & Cl.R): (%s, %s)" 
@@ -538,7 +538,7 @@ def layer2(cube_obj):
 
     try:
         assert(is_f2l(cube_obj.cb))
-        print("F2L completed:\n")
-        print(cube_obj)
+        # print("F2L completed", end="...")
+        # print(cube_obj)
     except AssertionError:
         print("did not successfully complete F2L\n")
