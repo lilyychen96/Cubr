@@ -1,5 +1,5 @@
 import sys, os
-sys.path.insert(0, os.path.abspath('src/cube'))
+sys.path.insert(0, os.path.abspath('cube'))
 from cube import Cube
 from layer1 import layer1
 from layer2 import layer2
