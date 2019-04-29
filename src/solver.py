@@ -4,6 +4,7 @@
 # convert to solution string
 # output: solution string
 import sys, os
+import time
 import cubeState
 import argparse
 import serial
@@ -17,7 +18,6 @@ if args.solver == "beginners":
 	import beginners as sv
 
 else:
-	
 	sys.path.insert(0, os.path.abspath('twoPhase'))
 	import twoPhase.solver as sv
 
@@ -66,6 +66,51 @@ def mapToArduino(sol):
 	remappedList.append('>')
 	return "".join(remappedList)
 
+def reverse_scramble(sol):
+	solList = sol.split()
+	remappedList = ['<']
+	for elem in solList:
+		if elem == "E":
+			remappedList.append('Q')
+		elif elem == "W":
+			remappedList.append('W')		
+		elif elem == "Q":
+			remappedList.append('E')
+		elif elem == "Y":
+			remappedList.append('R')		
+		elif elem == "T":
+			remappedList.append('T')
+		elif elem == "R":
+			remappedList.append('Y')		
+		elif elem == "O":
+			remappedList.append('U')
+		elif elem == "I":
+			remappedList.append('I')
+		elif elem == "U":
+			remappedList.append('O')
+		elif elem == "S":
+			remappedList.append('P')
+		elif elem == "A":
+			remappedList.append('A')
+		elif elem == "P":
+			remappedList.append('S')
+		elif elem == "G":
+			remappedList.append('D')
+		elif elem == "F":
+			remappedList.append('F')
+		elif elem == "D":
+			remappedList.append('G')
+		elif elem == "K":
+			remappedList.append('H')
+		elif elem == "J":
+			remappedList.append('J')
+		elif elem == "H":
+			remappedList.append('K')
+		else:
+			continue
+	remappedList.append('>')
+	return "".join(remappedList)
+
 # call cubeState detection
 output = cubeState.main()
 if args.solver == "beginners":
@@ -75,12 +120,26 @@ else:
 	a = sv.solve(output, 20, 2)
 
 print(a)
+
+# scramble
+scram = reverse_scramble(mapToArduino(a))
+print(scram)
+
+# communicate to Arduino using pyserial
+ser = serial.Serial('/dev/tty.usbmodem14201')
+time.sleep(2) # race condition
+b = ser.write(scram.encode())
+ser.close()
+# @TODO: sleep on keypress
+time.sleep(5)
+
+# solution
 sol = mapToArduino(a)
 print(sol)
 
 # communicate to Arduino using pyserial
 ser = serial.Serial('/dev/tty.usbmodem14201')
-time.sleep(2)
+time.sleep(2) # race condition
 b = ser.write(sol.encode())
 ser.close()
 
