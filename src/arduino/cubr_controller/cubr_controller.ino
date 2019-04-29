@@ -1,11 +1,11 @@
 // defines pins numbers
-const byte numChars = 200;
+const byte numChars = 50;
 char receivedChars[numChars];
 
 boolean newData = false;
-
-const int turnSpeed = 1000;
-const int turnDelay = 1500;
+//Final turn speed and delay!!
+const int turnSpeed = 750;
+const int turnDelay = 500;
 const int stepPinF = 8; 
 const int dirPinF = 9; 
 const int stepPinR= 6; 
