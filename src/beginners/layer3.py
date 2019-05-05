@@ -61,7 +61,7 @@ def solve_oll(cube_obj):
 
     try:
         assert(is_oll(cube_obj.cb))
-        # print("OLL completed", end="...")
+        print("OLL completed", end="...")
         # print(cube_obj)
     except AssertionError:
         print("did not successfully complete OLL\n")
@@ -118,7 +118,7 @@ def solve_pll(cube_obj):
 
     try:
         assert(is_pll(cube_obj.cb))
-        # print("PLL completed", end="...")
+        print("PLL completed", end="...")
         # print(cube_obj)
     except AssertionError:
         print("did not successfully complete PLL\n")
@@ -157,7 +157,8 @@ def layer3(cube_obj):
 
     try:
         assert(cube_obj.solved)
-        # print("cube is fully solved!!!\n")
+        print("cube is fully solved!!!\n")
+        print(cube_obj)
     except AssertionError:
         print("did not successfully solve cube at last layer...\n")
         print(cube_obj)

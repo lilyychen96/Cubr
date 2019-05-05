@@ -50,36 +50,27 @@ def beginners(config, test=False):
     return cube.soln
 
 
-# tests
-beginners("FUUBUUDRBLBBBRLBLBFDDBFRUURFFDFDDFDUDDRLLLRRLLRLFBURFU")
-beginners("RLBRUUFLULFURRBRRRLBBBFFFFFDDDDDDDDDFUUFLULLLRUURBLBBB")
+# # tests
+# beginners("FUUBUUDRBLBBBRLBLBFDDBFRUURFFDFDDFDUDDRLLLRRLLRLFBURFU")
+# beginners("RLBRUUFLULFURRBRRRLBBBFFFFFDDDDDDDDDFUUFLULLLRUURBLBBB")
 
-config = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
-cube = Cube(config, True)
-scramble1 = "U1 F2 U3 F3 R3 D3 L1 F3 D3 R1 D2 B2 U3 B2 L2 D1 B2 L2 B2 U1"
-execute_moves(cube, scramble1.split())
-beginners(cube.config)
-
-cube2 = Cube(config, True)
-scramble2 = "R1 U1 R2 U2 D1 R2 L1 F1 R1 D3 L2 U1 L2 B1 D3 L3 R3 U3 B3 R3 D3 R2 D3 B1 F3"
-execute_moves(cube2, scramble2.split())
-beginners(cube2.config)
-
-cube3 = Cube(config, True)
-scramble3 = "R3 F3 U1 D2 L2 B1 F2 D1 U2 R3 F2 U2 D1 F1 B3 L2 D3 U1 L1 D1 R2 U1 L3 U1 D3"
-execute_moves(cube3, scramble3.split())
-beginners(cube3.config)
-
-# # @NOTE: this test breaks on placing Corner.DRB, need to debug white corners
-# #        and debug white cross
-# test = True
 # config = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
-# cube4 = Cube(config, test)
+# cube = Cube(config, True)
+# scramble1 = "U1 F2 U3 F3 R3 D3 L1 F3 D3 R1 D2 B2 U3 B2 L2 D1 B2 L2 B2 U1"
+# execute_moves(cube, scramble1.split())
+# beginners(cube.config)
+
+# cube2 = Cube(config, True)
+# scramble2 = "R1 U1 R2 U2 D1 R2 L1 F1 R1 D3 L2 U1 L2 B1 D3 L3 R3 U3 B3 R3 D3 R2 D3 B1 F3"
+# execute_moves(cube2, scramble2.split())
+# beginners(cube2.config)
+
+# cube3 = Cube(config, True)
+# scramble3 = "R3 F3 U1 D2 L2 B1 F2 D1 U2 R3 F2 U2 D1 F1 B3 L2 D3 U1 L1 D1 R2 U1 L3 U1 D3"
+# execute_moves(cube3, scramble3.split())
+# beginners(cube3.config)
+
+# cube4 = Cube(config, True)
 # scramble4 = "U3 B3 L3 F3 R2 L3 U3 D2 B1 L3 U2 F2 D2 L3 D3 U2 L1 B1 L3 D3 U3 L3 D1 L3 R3"
 # execute_moves(cube4, scramble4.split())
-# print("scrambled cube:")
-# print(cube4)
-# layer1(cube4)
-# print(cube4)
-# layer2(cube4)
-# print(cube4)
+# beginners(cube4.config)

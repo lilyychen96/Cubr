@@ -452,7 +452,7 @@ def oll_moves(cube_obj, state):
 
     # Bar-shapes: four corners solved
     elif (state == 50):
-        return ["R1", "U1", "R3", "U3", "L1", "R3", "F1", "R1", "F3", "L1"]
+        return ["R1", "U1", "R3", "U3", "L1", "R3", "F1", "R1", "F3", "L3"]
 
     # Cross: four edges solved
     elif (state == 51):

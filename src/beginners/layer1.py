@@ -254,7 +254,7 @@ def move_DL(cube_obj, loc):
             if ((cb[30] == Cl.L) and (cb[43] == CL.D)):
                 return ["L1", "B3", "U3", "L2"]
             else:
-                assert((cb[30] == Cl.D) and (cb[43] == CL.L))
+                assert((cb[30] == Cl.D) and (cb[43] == Cl.L))
                 return []
 
         except AssertionError:
@@ -686,7 +686,7 @@ def white_cross(cube_obj):
 
     try:
         assert(is_white_cross(cube_obj.cb))
-        # print("white cross completed", end="...")
+        print("white cross completed", end="...")
         # print(cube_obj)
     except AssertionError:
         print("did not successfully reach white cross state\n")
@@ -837,7 +837,7 @@ def move_DLF(cube_obj, loc):
             if (cb[8] == Cl.D):
                 return ["U3", "L3", "U2", "L1"]
             elif (cb[9] == Cl.D):
-                return ["L1", "U1", "L3"]
+                return ["L3", "U1", "L1"]
             else: # cb[20] == Cl.D)
                 return ["U2", "F1", "U3", "F3"]
 
@@ -1078,7 +1078,7 @@ def move_DRB(cube_obj, loc):
             if (cb[6] == Cl.D):
                 return ["B1", "U1", "B3", "U1", "B1", "U3", "B3"]
             elif (cb[18] == Cl.D):
-                return ["B1", "U1", "B3", "U1", "B1", "U3", "B3"]
+                return ["U1", "R3", "U1", "R1"]
             else: # cb[38] == Cl.D)
                 return ["B1", "U2", "B3"]
 
@@ -1230,7 +1230,7 @@ def white_corners(cube_obj):
 
     try:
         assert(is_white_corners(cube_obj.cb))
-        # print("white corners completed", end="...")
+        print("white corners completed", end="...")
         # print(cube_obj)
     except AssertionError:
         print("did not successfully reach white corners state\n")

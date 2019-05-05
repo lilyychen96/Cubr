@@ -377,9 +377,9 @@ def move_BR(cube_obj, loc):
             if (cb[5] == Cl.B):
                 assert(cb[10] == Cl.R)
                 return ["U1", "B1", "U3", "B3", "U3", "R3", "U1", "R1"]
-            else: # cb[10] == Cl.D)
+            else: # cb[10] == Cl.B)
                 assert(cb[5] == Cl.R)
-                return ["L1", "U3", "L3", "U3", "B3", "U1", "B1"]
+                return ["U2", "R3", "U1", "R1", "U1", "B1", "U3", "B3"]
 
         except AssertionError:
             print("invalid colors (should be Cl.B & Cl.R): (%s, %s)" 
@@ -538,7 +538,7 @@ def layer2(cube_obj):
 
     try:
         assert(is_f2l(cube_obj.cb))
-        # print("F2L completed", end="...")
+        print("second layer completed", end="...")
         # print(cube_obj)
     except AssertionError:
         print("did not successfully complete F2L\n")
