@@ -41,7 +41,8 @@ def solve_oll(cube_obj):
         # make temp cube object, execute U1
         execute_moves(temp, "U1")
         state = oll_state(temp.cb)
-        # print("OLL state: %s" % state)
+        print("OLL state: %s" % state)
+        print(temp)
         u_turns += 1
 
     if (u_turns == 1):
@@ -128,8 +129,10 @@ def layer3(cube_obj):
     """
     Calls the solving algorithms for the third/top layer: OLL and PLL
     """
-    # print(cube_obj)
+    print("solving OLL")
+    print(cube_obj)
     solve_oll(cube_obj)
+    exit()
     # print(cube_obj)
     solve_pll(cube_obj)
 

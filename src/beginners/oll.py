@@ -336,7 +336,7 @@ def oll_moves(cube_obj, state):
     """
     Returns the moves list to orient the top layer
     """
-    # print("oll state: %s" % state)
+    print("oll state: %s" % state)
     # no edges solved
     if (state == 1):
         return ["R1", "U2", "R2", "F1", "R1", "F3", "U2", "R3", "F1", "R1", "F3"]
@@ -409,7 +409,7 @@ def oll_moves(cube_obj, state):
     elif (state == 32):
         return ["R2", "U1", "R3", "B3", "R1", "U3", "R2", "U1", "R1", "B1", "R3"]
     elif (state == 33):
-        return ["L3", "R1", "U1", "R1", "B1", "R3", "B3", "U3", "L3", "R1"]
+        return ["L3", "U1", "L1", "U2", "L3", "U3", "B3", "U1", "B1", "U1", "L1"]
     elif (state == 34):
         return ["L3", "R1", "B3", "U3", "L3", "B3", "L1", "B1", "U1", "L1", "R3"]
 

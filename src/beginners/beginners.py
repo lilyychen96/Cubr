@@ -103,9 +103,11 @@ config = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
 # execute_moves(cube7, "R1 F1 B1 L2 L2 R2 R3 F3 F1 L3 F2 F2 D1 B3 D3 U1 L1 U3 F2 B1 F1 U3".split())
 # beginners(cube7.config)
 
-cube8 = Cube(config, True)
-execute_moves(cube8, "F2 L2 R2 B1 F2 R3 F3 F3 L1 D3 R1 U2 R3 L1 L1 R3 D1 B2 U2 L2 D1 B1 L3".split())
-beginners(cube8.config)
+# uncomment to test
+# breaks at 2nd layer
+# cube8 = Cube(config, True)
+# execute_moves(cube8, "U1 L1 L1 D3 L2 D3 D2 B1 L1 F2 B1 B1 B1 D3 F3 R2 B2 U1 U3 R1 L3 R1 B1 U2 R1".split())
+# beginners(cube8.config)
 
 # cube = random_scramble()
 # print(cube)

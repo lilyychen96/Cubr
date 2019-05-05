@@ -29,7 +29,7 @@ def move_DF(cube_obj, loc):
         try:
             assert((cb[5] == Cl.D) or (cb[10] == Cl.D))
             if (cb[5] == Cl.D):
-                return ["R2", "B3"]
+                return ["R2", "D3"]
             else: # cb[10] == Cl.D)
                 return ["R3", "F1"]
 
@@ -53,7 +53,7 @@ def move_DF(cube_obj, loc):
         try:
             assert((cb[3] == Cl.D) or (cb[37] == Cl.D))
             if (cb[3] == Cl.D):
-                return ["L2", "B1"]
+                return ["L2", "D1"]
             else: # cb[37] == Cl.D)
                 return ["L1", "F3"]
 
@@ -104,7 +104,7 @@ def move_DF(cube_obj, loc):
             if (cb[30] == Cl.D):
                 return ["D1"]
             else: # cb[43] == Cl.D)
-                return ["L1", "F3"]
+                return ["L3", "F3"]
 
         except AssertionError:
             print("invalid colors (at least one should be Cl.D): (%s, %s)" 
@@ -251,7 +251,7 @@ def move_DL(cube_obj, loc):
     elif loc == Ed.DL:
         try:
             assert((cb[30] == Cl.D) or (cb[43] == Cl.D))
-            if ((cb[30] == Cl.L) and (cb[43] == CL.D)):
+            if ((cb[30] == Cl.L) and (cb[43] == Cl.D)):
                 return ["L1", "B3", "U3", "L2"]
             else:
                 assert((cb[30] == Cl.D) and (cb[43] == Cl.L))
@@ -412,10 +412,10 @@ def move_DB(cube_obj, loc):
     elif loc == Ed.DB:
         try:
             assert((cb[34] == Cl.D) or (cb[52] == Cl.D))
-            if ((cb[34] == Cl.B) and (cb[52] == CL.D)):
+            if ((cb[34] == Cl.B) and (cb[52] == Cl.D)):
                 return ["B2", "U1", "R1", "B3"]
             else:
-                assert((cb[34] == Cl.D) and (cb[52] == CL.B))
+                assert((cb[34] == Cl.D) and (cb[52] == Cl.B))
                 return []
 
         except AssertionError:
@@ -529,10 +529,10 @@ def move_DR(cube_obj, loc):
     elif loc == Ed.DR:
         try:
             assert((cb[32] == Cl.D) or (cb[16] == Cl.D))
-            if ((cb[32] == Cl.R) and (cb[16] == CL.D)):
+            if ((cb[32] == Cl.R) and (cb[16] == Cl.D)):
                 return ["R3", "D1", "B3", "D3"]
             else:
-                assert((cb[32] == Cl.D) and (cb[16] == CL.R))
+                assert((cb[32] == Cl.D) and (cb[16] == Cl.R))
                 return []
 
         except AssertionError:
@@ -631,8 +631,11 @@ def white_cross(cube_obj):
     if is_white_cross(cube_state):
         return
 
+    print("DF")
+    print(cube_obj)
     if not ((cube_state[28] == Cl.D) and (cube_state[25] == Cl.F)):
         loc = find_edge(cubies, tuple(sorted([Cl.D, Cl.F])))
+        print(loc)
         if loc is None:
             print("can't find edge (%s, %s)" % tuple(sorted([Cl.D, Cl.F])))
         else:
@@ -646,8 +649,11 @@ def white_cross(cube_obj):
     if is_white_cross(cube_state):
         return
 
+    print("DL")
+    print(cube_obj)
     if not ((cube_state[30] == Cl.D) and (cube_state[43] == Cl.L)):
         loc = find_edge(cubies, tuple(sorted([Cl.D, Cl.L])))
+        print(loc)
         if loc is None:
             print("can't find edge (%s, %s)" % tuple(sorted([Cl.D, Cl.L])))
         else:
@@ -661,8 +667,11 @@ def white_cross(cube_obj):
     if is_white_cross(cube_state):
         return
 
+    print("DB")
+    print(cube_obj)
     if not ((cube_state[34] == Cl.D) and (cube_state[52] == Cl.B)):
         loc = find_edge(cubies, tuple(sorted([Cl.D, Cl.B])))
+        print(loc)
         if loc is None:
             print("can't find edge (%s, %s)" % tuple(sorted([Cl.D, Cl.B])))
         else:
@@ -676,8 +685,11 @@ def white_cross(cube_obj):
     if is_white_cross(cube_state):
         return
 
+    print("DR")
+    print(cube_obj)
     if not ((cube_state[32] == Cl.D) and (cube_state[16] == Cl.R)):
         loc = find_edge(cubies, tuple(sorted([Cl.D, Cl.R])))
+        print(loc)
         if loc is None:
             print("can't find edge (%s, %s)" % tuple(sorted([Cl.U, Cl.R])))
         else:
@@ -969,7 +981,7 @@ def move_DBL(cube_obj, loc):
             elif (cb[18] == Cl.D):
                 return ["B3", "U1", "B1"]
             else: # cb[38] == Cl.D)
-                return ["U1", "F1", "U3"]
+                return ["U2", "L1", "U3", "L3"]
 
         except AssertionError:
             print("invalid colors (at least one should be Cl.D): (%s, %s, %s)" 
@@ -1171,9 +1183,11 @@ def white_corners(cube_obj):
     if is_white_corners(cstate):
         return
 
-    # print(cube_obj)
+    print("DFR")
+    print(cube_obj)
     if not ((cstate[29] == Cl.D) and (cstate[26] == Cl.F) and (cstate[15] == Cl.R)):
         loc = find_corner(cubies, tuple(sorted([Cl.D, Cl.F, Cl.R])))
+        print(loc)
         if loc is None:
             print("can't find corner (%s, %s, %s)" 
                 % tuple(sorted([Cl.D, Cl.F, Cl.R])))
@@ -1188,9 +1202,11 @@ def white_corners(cube_obj):
     if is_white_corners(cstate):
         return
 
-    # print(cube_obj)
+    print("DLF")
+    print(cube_obj)
     if not ((cstate[27] == Cl.D) and (cstate[44] == Cl.L) and (cstate[24] == Cl.F)):
         loc = find_corner(cubies, tuple(sorted([Cl.D, Cl.L, Cl.F])))
+        print(loc)
         if loc is None:
             print("can't find corner (%s, %s, %s)" 
                 % tuple(sorted([Cl.D, Cl.L, Cl.F])))
@@ -1205,9 +1221,11 @@ def white_corners(cube_obj):
     if is_white_corners(cstate):
         return
 
-    # print(cube_obj)
+    print("DBL")
+    print(cube_obj)
     if not ((cstate[33] == Cl.D) and (cstate[53] == Cl.B) and (cstate[42] == Cl.L)):
         loc = find_corner(cubies, tuple(sorted([Cl.D, Cl.B, Cl.L])))
+        print(loc)
         if loc is None:
             print("can't find corner (%s, %s, %s)" 
                 % tuple(sorted([Cl.D, Cl.B, Cl.L])))
@@ -1222,9 +1240,11 @@ def white_corners(cube_obj):
     if is_white_corners(cstate):
         return
 
-    # print(cube_obj)
+    print("DRB")
+    print(cube_obj)
     if not ((cstate[35] == Cl.D) and (cstate[17] == Cl.R) and (cstate[51] == Cl.B)):
         loc = find_corner(cubies, tuple(sorted([Cl.D, Cl.R, Cl.B])))
+        print(loc)
         if loc is None:
             print("can't find corner (%s, %s, %s)" 
                 % tuple(sorted([Cl.D, Cl.R, Cl.B])))
