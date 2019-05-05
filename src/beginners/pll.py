@@ -81,7 +81,7 @@ def pll_state(cb):
     r1_perm = ((cb[9] == cb[10]) and (cb[10] == cb[47]) and
                 (cb[18] == cb[37]) and (cb[37] == cb[20]) and
                 (cb[45] == cb[19]) and (cb[19] == cb[38]) and
-                (cb[36] == cb[46]) and (cb[46] == cb[20]))
+                (cb[36] == cb[46]) and (cb[46] == cb[11]))
     r2_perm = ((cb[9] == cb[19]) and (cb[19] == cb[47]) and
                 (cb[18] == cb[10]) and (cb[10] == cb[20]) and
                 (cb[45] == cb[37]) and (cb[37] == cb[38]) and
@@ -157,6 +157,7 @@ def pll_moves(cube_obj, state):
     """
     Returns the moves list to permute the top layer into the fully-solved state
     """
+    print("pll state: %s" % state)
     # edge perms
     if (state == 1):
         return ["R1", "U3", "R1", "U1", "R1", "U1", "R1", "U3", "R3", "U3", "R2"]
@@ -203,9 +204,18 @@ def pll_moves(cube_obj, state):
     elif (state == 19):
         return ["L3", "U3", "L1", "F2", "D1", "R3", "U1", "R1", "U3", "R1", "D3", "F2"]
     elif (state == 20):
-        return ["R2", "D3", "F1", "U3", "F1", "U1", "F3", "D1", "R2", "F1", "U3", "F3"]
+        return ["R2", "D3", "F1", "U3", "F1", "U1", "F3", "D1", "R2", "B1", "U3", "B3"]
     elif (state == 21):
         return ["R1", "U1", "R3", "F2", "D3", "L1", "U3", "L3", "U1", "L3", "D1", "F2"]
 
     # should never reach this
     return []
+
+
+
+
+
+
+
+
+

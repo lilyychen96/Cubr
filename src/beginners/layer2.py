@@ -86,10 +86,10 @@ def move_FL(cube_obj, loc):
         try:
             assert((cb[23] == Cl.F) or (cb[12] == Cl.F))
             if (cb[23] == Cl.F):
-                assert(cb[12] == Cl.R)
+                assert(cb[12] == Cl.L)
                 return ["R1", "U3", "R3", "U3", "F3", "U1", "F2", "U3", "F3", "U3", "L3", "U1", "L1"]
             else: # cb[12] == Cl.F)
-                assert(cb[23] == Cl.R)
+                assert(cb[23] == Cl.L)
                 return ["R1", "U3", "R3", "U3", "F3", "U1", "F1", "U1", "L3", "U1", "L1", "U1", "F1", "U3", "F3"]
 
         except AssertionError:
@@ -132,7 +132,7 @@ def move_FL(cube_obj, loc):
                 return ["B3", "U1", "B1", "U1", "L1", "U3", "L3", "U3", "F1", "U3", "F3", "U3", "L3", "U1", "L1"]
             else: # cb[50] == Cl.F)
                 assert(cb[39] == Cl.L)
-                return ["B3", "U1", "B3", "U3", "R1", "U1", "R1", "U2", "R1", "U3", "R1", "U3", "F3", "U1", "F1"]
+                return ["B3", "U1", "B1", "U1", "L1", "U3", "L2", "U1", "L1", "U1", "F1", "U3", "F3"]
 
         except AssertionError:
             print("invalid colors (should be Cl.F & Cl.L): (%s, %s)" 
@@ -295,7 +295,7 @@ def move_BL(cube_obj, loc):
             if (cb[3] == Cl.B):
                 assert(cb[37] == Cl.L)
                 return ["U3", "B3", "U1", "B1", "U1", "L1", "U3", "L3"]
-            else: # cb[37] == Cl.D)
+            else: # cb[37] == Cl.B)
                 assert(cb[3] == Cl.L)
                 return ["U2", "L1", "U3", "L3", "U3", "B3", "U1", "B1"]
 
@@ -407,7 +407,7 @@ def move_BR(cube_obj, loc):
                 return ["U3", "B1", "U3", "B3", "U3", "R3", "U1", "R1"]
             else: # cb[37] == Cl.D)
                 assert(cb[3] == Cl.R)
-                return ["U2", "L1", "U3", "L3", "U3", "B3", "U1", "B1"]
+                return ["R3", "U1", "R1", "U1", "B1", "U3", "B3"]
 
         except AssertionError:
             print("invalid colors (should be Cl.B & Cl.R): (%s, %s)" 
@@ -418,7 +418,7 @@ def move_BR(cube_obj, loc):
             assert((cb[1] == Cl.B) or (cb[46] == Cl.B))
             if (cb[1] == Cl.B):
                 assert(cb[46] == Cl.R)
-                return ["U1", "B1", "U3", "B3", "U3", "R3", "U1", "R1"]
+                return ["U2", "B1", "U3", "B3", "U3", "R3", "U1", "R1"]
             else: # cb[46] == Cl.B)
                 assert(cb[1] == Cl.R)
                 return ["U3", "R3", "U1", "R1", "U1", "B1", "U3", "B3"]
@@ -483,8 +483,11 @@ def layer2(cube_obj):
     if is_f2l(cube_state):
         return
 
+    # print("FL")
+    # print(cube_obj)
     if not ((cube_state[21] == Cl.F) and (cube_state[41] == Cl.L)):
         loc = find_edge(cubies, tuple(sorted([Cl.F, Cl.L])))
+        # print(loc)
         if loc is None:
             print("can't find edge (%s, %s)" % tuple(sorted([Cl.F, Cl.L])))
         else:
@@ -498,8 +501,11 @@ def layer2(cube_obj):
     if is_f2l(cube_state):
         return
 
+    # print("FR")
+    # print(cube_obj)
     if not ((cube_state[23] == Cl.F) and (cube_state[12] == Cl.R)):
         loc = find_edge(cubies, tuple(sorted([Cl.F, Cl.R])))
+        # print(loc)
         if loc is None:
             print("can't find edge (%s, %s)" % tuple(sorted([Cl.F, Cl.R])))
         else:
@@ -513,8 +519,11 @@ def layer2(cube_obj):
     if is_f2l(cube_state):
         return
 
+    # print("BL")
+    # print(cube_obj)
     if not ((cube_state[50] == Cl.B) and (cube_state[39] == Cl.L)):
         loc = find_edge(cubies, tuple(sorted([Cl.B, Cl.L])))
+        # print(loc)
         if loc is None:
             print("can't find edge (%s, %s)" % tuple(sorted([Cl.B, Cl.L])))
         else:
@@ -528,8 +537,11 @@ def layer2(cube_obj):
     if is_f2l(cube_state):
         return
 
+    # print("BR")
+    # print(cube_obj)
     if not ((cube_state[48] == Cl.B) and (cube_state[14] == Cl.R)):
         loc = find_edge(cubies, tuple(sorted([Cl.B, Cl.R])))
+        # print(loc)
         if loc is None:
             print("can't find edge (%s, %s)" % tuple(sorted([Cl.B, Cl.R])))
         else:
@@ -542,3 +554,6 @@ def layer2(cube_obj):
         # print(cube_obj)
     except AssertionError:
         print("did not successfully complete F2L\n")
+
+    # print(cube_obj)
+    # exit()

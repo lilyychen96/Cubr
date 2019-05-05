@@ -49,12 +49,29 @@ def beginners(config, test=False):
 
     return cube.soln
 
+import random
+def random_scramble():
+    config = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
+    cube = Cube(config, True)
+    moves = [
+        "U1", "U2", "U3", "R1", "R2", "R3", "F1", "F2", "F3",
+        "D1", "D2", "D3", "L1", "L2", "L3", "B1", "B2", "B3"
+    ]
+
+    scramble = ""
+    for i in range(random.randint(20,25)):
+        scramble += moves[random.randint(0,17)] + " "
+
+    print(scramble)
+    execute_moves(cube, scramble.split())
+    return cube
+
 
 # # tests
 # beginners("FUUBUUDRBLBBBRLBLBFDDBFRUURFFDFDDFDUDDRLLLRRLLRLFBURFU")
 # beginners("RLBRUUFLULFURRBRRRLBBBFFFFFDDDDDDDDDFUUFLULLLRUURBLBBB")
 
-# config = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
+config = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
 # cube = Cube(config, True)
 # scramble1 = "U1 F2 U3 F3 R3 D3 L1 F3 D3 R1 D2 B2 U3 B2 L2 D1 B2 L2 B2 U1"
 # execute_moves(cube, scramble1.split())
@@ -74,3 +91,23 @@ def beginners(config, test=False):
 # scramble4 = "U3 B3 L3 F3 R2 L3 U3 D2 B1 L3 U2 F2 D2 L3 D3 U2 L1 B1 L3 D3 U3 L3 D1 L3 R3"
 # execute_moves(cube4, scramble4.split())
 # beginners(cube4.config)
+
+# cube5 = Cube("FLURUBDFBDRLURUBRBLLRDFFBUULLRDDUDDLUDFFLLRFDFBRBBRUBF")
+# beginners(cube5.config)
+
+# cube6 = Cube(config, True)
+# execute_moves(cube6, "L3 R2 L3 U1 D3 U2 R2 R3 F3 B2 L3 F3 L3 B3 U2 R1 B1 F2 U3 F1 D1 R2 F3 B2 D3".split())
+# beginners(cube6.config)
+
+# cube7 = Cube(config, True)
+# execute_moves(cube7, "R1 F1 B1 L2 L2 R2 R3 F3 F1 L3 F2 F2 D1 B3 D3 U1 L1 U3 F2 B1 F1 U3".split())
+# beginners(cube7.config)
+
+cube8 = Cube(config, True)
+execute_moves(cube8, "F2 L2 R2 B1 F2 R3 F3 F3 L1 D3 R1 U2 R3 L1 L1 R3 D1 B2 U2 L2 D1 B1 L3".split())
+beginners(cube8.config)
+
+# cube = random_scramble()
+# print(cube)
+# beginners(cube.config)
+

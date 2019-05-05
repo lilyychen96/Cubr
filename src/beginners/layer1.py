@@ -88,10 +88,10 @@ def move_DF(cube_obj, loc):
     elif loc == Ed.DF:
         try:
             assert((cb[28] == Cl.D) or (cb[25] == Cl.D))
-            if ((cb[28] == Cl.F) and (cb[25] == CL.D)):
+            if ((cb[28] == Cl.F) and (cb[25] == Cl.D)):
                 return ["F2", "U3", "R3", "F1"]
             else:
-                assert((cb[28] == Cl.D) and (cb[25] == CL.F))
+                assert((cb[28] == Cl.D) and (cb[25] == Cl.F))
                 return []
 
         except AssertionError:
@@ -902,7 +902,7 @@ def move_DLF(cube_obj, loc):
             if (cb[44] == Cl.D):
                 return ["L3", "U2", "L1", "U3", "F1", "U3", "F3"]
             elif (cb[24] == Cl.D):
-                return ["F1", "U2", "F3", "L3", "U1", "L1"]
+                return ["F1", "U1", "F3", "U3", "F1", "U1", "F3", "U3"]
             else: # cb[27] == Cl.D)
                 assert((cb[27] == Cl.D) and (cb[44] == Cl.L) and (cb[24] == Cl.F))
                 return []
@@ -1171,6 +1171,7 @@ def white_corners(cube_obj):
     if is_white_corners(cstate):
         return
 
+    # print(cube_obj)
     if not ((cstate[29] == Cl.D) and (cstate[26] == Cl.F) and (cstate[15] == Cl.R)):
         loc = find_corner(cubies, tuple(sorted([Cl.D, Cl.F, Cl.R])))
         if loc is None:
@@ -1187,6 +1188,7 @@ def white_corners(cube_obj):
     if is_white_corners(cstate):
         return
 
+    # print(cube_obj)
     if not ((cstate[27] == Cl.D) and (cstate[44] == Cl.L) and (cstate[24] == Cl.F)):
         loc = find_corner(cubies, tuple(sorted([Cl.D, Cl.L, Cl.F])))
         if loc is None:
@@ -1203,6 +1205,7 @@ def white_corners(cube_obj):
     if is_white_corners(cstate):
         return
 
+    # print(cube_obj)
     if not ((cstate[33] == Cl.D) and (cstate[53] == Cl.B) and (cstate[42] == Cl.L)):
         loc = find_corner(cubies, tuple(sorted([Cl.D, Cl.B, Cl.L])))
         if loc is None:
@@ -1219,6 +1222,7 @@ def white_corners(cube_obj):
     if is_white_corners(cstate):
         return
 
+    # print(cube_obj)
     if not ((cstate[35] == Cl.D) and (cstate[17] == Cl.R) and (cstate[51] == Cl.B)):
         loc = find_corner(cubies, tuple(sorted([Cl.D, Cl.R, Cl.B])))
         if loc is None:

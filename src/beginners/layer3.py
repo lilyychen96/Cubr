@@ -99,6 +99,7 @@ def solve_pll(cube_obj):
         execute_moves(temp, "U1")
         state = pll_state(temp.cb)
         # print("PLL state: %s" % state)
+        # print(temp)
         u_turns += 1
 
     if (u_turns == 1):
@@ -127,7 +128,9 @@ def layer3(cube_obj):
     """
     Calls the solving algorithms for the third/top layer: OLL and PLL
     """
+    # print(cube_obj)
     solve_oll(cube_obj)
+    # print(cube_obj)
     solve_pll(cube_obj)
 
     # spins top layer until everything lines up
