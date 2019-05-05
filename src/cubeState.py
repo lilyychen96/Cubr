@@ -8,7 +8,7 @@ import time
 ################### GLOBAL VARIABLES ###################
 SQUARELEN = 133
 # Hue & Saturation list
-HSLIST = [[126, 190, 190], [68,190, 190], [32, 190, 190], [123, 20, 242], [5, 190, 190], [13, 190, 190]]
+HSLIST = [[126, 190, 190], [49,190, 190], [32, 190, 190], [123, 20, 242], [5, 190, 190], [13, 190, 190]]
 # Blue, Green, Yellow, White, Red, Orange
 COLOR = ['b', 'g', 'y', 'w', 'r', 'o']
 FACE = ['L', 'R', 'U', 'D', 'F', 'B']
@@ -23,6 +23,10 @@ OUTPUT = ''
 # distance formula between 2 points
 def distance(x1, y1, z1, x2, y2, z2):
 	return math.sqrt(((x2 - x1)**2) + ((y2 - y1)**2) + ((z2 - z1)**2))
+
+# use this to distinguish between red and orange for a specific cube
+def naiveDistance(x1, y1, z1, x2, y2, z2):
+	return math.sqrt(((x2 - x1)**2))
 
 # finds the color in a given region of the image
 def findColor(img, leftX, bottomY):
@@ -155,14 +159,14 @@ def main():
         blueUpper = np.array(blueUpper, dtype = "uint8")
 
         # green color detection
-        greenLower = [51,128,128]
+        greenLower = [41,128,128]
         greenUpper = [85,255,255]
         greenLower = np.array(greenLower, dtype = "uint8")
         greenUpper = np.array(greenUpper, dtype = "uint8")
 
         # yellow color detection
-        yellowLower = [16, 128, 128]
-        yellowUpper = [50,  255, 255]
+        yellowLower = [24, 128, 128]
+        yellowUpper = [40, 255, 255]
         yellowLower = np.array(yellowLower, dtype = "uint8")
         yellowUpper = np.array(yellowUpper, dtype = "uint8")
 
@@ -180,7 +184,7 @@ def main():
 
         # orange color detection
         orangeLower = [9, 128, 128]
-        orangeUpper = [15, 255, 255]
+        orangeUpper = [23, 255, 255]
         orangeLower = np.array(orangeLower, dtype = "uint8")
         orangeUpper = np.array(orangeUpper, dtype = "uint8")
 

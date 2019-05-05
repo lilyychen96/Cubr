@@ -7,6 +7,7 @@ import sys, os
 import cubeState
 import argparse
 import serial
+import time
 parser = argparse.ArgumentParser()
 parser.add_argument("--solver", help="Select either twophase or beginners solver")
 args = parser.parse_args()
@@ -66,21 +67,77 @@ def mapToArduino(sol):
 	remappedList.append('>')
 	return "".join(remappedList)
 
+def reverse_scramble(sol):
+	remappedList = ['<']
+	for elem in sol:
+		if elem == "E":
+			remappedList.append('Q')
+		elif elem == "W":
+			remappedList.append('W')		
+		elif elem == "Q":
+			remappedList.append('E')
+		elif elem == "Y":
+			remappedList.append('R')		
+		elif elem == "T":
+			remappedList.append('T')
+		elif elem == "R":
+			remappedList.append('Y')		
+		elif elem == "O":
+			remappedList.append('U')
+		elif elem == "I":
+			remappedList.append('I')
+		elif elem == "U":
+			remappedList.append('O')
+		elif elem == "S":
+			remappedList.append('P')
+		elif elem == "A":
+			remappedList.append('A')
+		elif elem == "P":
+			remappedList.append('S')
+		elif elem == "G":
+			remappedList.append('D')
+		elif elem == "F":
+			remappedList.append('F')
+		elif elem == "D":
+			remappedList.append('G')
+		elif elem == "K":
+			remappedList.append('H')
+		elif elem == "J":
+			remappedList.append('J')
+		elif elem == "H":
+			remappedList.append('K')
+		else:
+			continue
+	remappedList.append('>')
+	remappedList.reverse()
+	remappedList[0] = '<'
+	remappedList[-1] = '>'
+	return "".join(remappedList)
+
+# DEBG
+# output = "FLURUBDFBDRLURUBRBLLRDFFBUULLRDDUDDLUDFFLLRFDFBRBBRUBF"
+
 # call cubeState detection
 output = cubeState.main()
+
 if args.solver == "beginners":
 	a = sv.beginners(output)
 else:
 	# solve with a maximum of 20 moves and a timeout of 2 seconds for example
 	a = sv.solve(output, 20, 2)
 
-print(a)
 sol = mapToArduino(a)
+# scramble
+scram = reverse_scramble(sol)
+print(a)
+print(scram)
 print(sol)
 
 # communicate to Arduino using pyserial
-ser = serial.Serial('/dev/tty.usbmodem14201')
-time.sleep(2)
+ser = serial.Serial('/dev/tty.usbmodem14101',9600)
+time.sleep(5)
+c = ser.write(scram.encode())
+time.sleep(30)
 b = ser.write(sol.encode())
 ser.close()
 
