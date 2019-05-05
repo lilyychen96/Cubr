@@ -8,6 +8,7 @@ import time
 import cubeState
 import argparse
 import serial
+import time
 parser = argparse.ArgumentParser()
 parser.add_argument("--solver", help="Select either twophase or beginners solver")
 args = parser.parse_args()
@@ -67,9 +68,8 @@ def mapToArduino(sol):
 	return "".join(remappedList)
 
 def reverse_scramble(sol):
-	solList = sol.split()
 	remappedList = ['<']
-	for elem in solList:
+	for elem in sol:
 		if elem == "E":
 			remappedList.append('Q')
 		elif elem == "W":
@@ -109,37 +109,35 @@ def reverse_scramble(sol):
 		else:
 			continue
 	remappedList.append('>')
+	remappedList.reverse()
+	remappedList[0] = '<'
+	remappedList[-1] = '>'
 	return "".join(remappedList)
+
+# DEBG
+# output = "FLURUBDFBDRLURUBRBLLRDFFBUULLRDDUDDLUDFFLLRFDFBRBBRUBF"
 
 # call cubeState detection
 output = cubeState.main()
+
 if args.solver == "beginners":
 	a = sv.beginners(output)
 else:
 	# solve with a maximum of 20 moves and a timeout of 2 seconds for example
 	a = sv.solve(output, 20, 2)
 
-print(a)
-
-# scramble
-scram = reverse_scramble(mapToArduino(a))
-print(scram)
-
-# communicate to Arduino using pyserial
-ser = serial.Serial('/dev/tty.usbmodem14201')
-time.sleep(2) # race condition
-b = ser.write(scram.encode())
-ser.close()
-# @TODO: sleep on keypress
-time.sleep(5)
-
-# solution
 sol = mapToArduino(a)
+# scramble
+scram = reverse_scramble(sol)
+print(a)
+print(scram)
 print(sol)
 
 # communicate to Arduino using pyserial
-ser = serial.Serial('/dev/tty.usbmodem14201')
-time.sleep(2) # race condition
-b = ser.write(sol.encode())
-ser.close()
+# ser = serial.Serial('/dev/tty.usbmodem14101',9600)
+# time.sleep(5)
+# c = ser.write(scram.encode())
+# time.sleep(30)
+# b = ser.write(sol.encode())
+# ser.close()
 
