@@ -12,12 +12,14 @@ HSLIST = [[126, 190, 190], [49,190, 190], [32, 190, 190], [123, 20, 242], [5, 19
 # Blue, Green, Yellow, White, Red, Orange
 COLOR = ['b', 'g', 'y', 'w', 'r', 'o']
 FACE = ['L', 'R', 'U', 'D', 'F', 'B']
+CENTER = [3, 1, 4, 5, 0, 2]
 RGB = [(255,0,0),(0,128,0),(0,255,255),(255,255,255),(0,0,255),(0,165,255)]
 MARGIN = 40
 MIRROR = False
 # stores mapped cube
 CUBE = [["N" for i in range(9)] for j in range(6)]
 OUTPUT = ''
+COUNT = [0]
 ########################################################
 
 # distance formula between 2 points
@@ -76,14 +78,14 @@ def mapCubeFace(hsv):
 	topMid = findColor(hsv, 583, 150)
 	topRight = findColor(hsv, 716, 150)
 	midLeft = findColor(hsv, 450, 283)
-	center = findColor(hsv, 583, 283)
+	center = FACE[CENTER[COUNT[0]]]
 	midRight = findColor(hsv, 716, 283)
 	lowerLeft = findColor(hsv, 450, 416)
 	lowerMid = findColor(hsv, 583, 416)
 	lowerRight = findColor(hsv, 716, 416)
 
 	# fill the mapped cube depending on center color
-	index = FACE.index(center)
+	index = CENTER.index(COUNT[0])
 	CUBE[index][0] = topLeft
 	CUBE[index][1] = topMid
 	CUBE[index][2] = topRight
@@ -111,7 +113,7 @@ def realTimeColor(hsv, res):
 	cv2.rectangle(res,(125,25),(175,75),RGB[FACE.index(topRight)],-1)
 
 	cv2.rectangle(res,(25,75),(75,125),RGB[FACE.index(midLeft)],-1)
-	cv2.rectangle(res,(75,75),(125,125),RGB[FACE.index(center)],-1)
+	cv2.rectangle(res,(75,75),(125,125),RGB[CENTER.index(COUNT[0])],-1)
 	cv2.rectangle(res,(125,75),(175,125),RGB[FACE.index(midRight)],-1)
 
 	cv2.rectangle(res,(25,125),(75,175),RGB[FACE.index(lowerLeft)],-1)
@@ -231,6 +233,9 @@ def main():
             mapCubeFace(hsv)
             mapToStr()
             OUTPUT = outputStr()
+            COUNT[0] += 1
+            if COUNT[0] == 6:
+                return OUTPUT
 
     	#write logic for enter key
         if key == 13:

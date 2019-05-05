@@ -4,8 +4,8 @@ char receivedChars[numChars];
 
 boolean newData = false;
 //Final turn speed and delay!!
-const int turnSpeed = 750;
-const int turnDelay = 500;
+const int turnSpeed = 650;
+const int turnDelay = 220;
 const int stepPinF = 8; 
 const int dirPinF = 9; 
 const int stepPinR= 6; 

@@ -5,6 +5,7 @@
 # output: solution string
 import sys, os
 import time
+from cubeState import *
 import cubeState
 import argparse
 import serial
@@ -119,6 +120,7 @@ def reverse_scramble(sol):
 
 # call cubeState detection
 output = cubeState.main()
+print("Cubestring: ", output)
 
 if args.solver == "beginners":
 	a = sv.beginners(output)
@@ -129,9 +131,9 @@ else:
 sol = mapToArduino(a)
 # scramble
 scram = reverse_scramble(sol)
-print(a)
-print(scram)
-print(sol)
+print("Sequence: ", a)
+print("Scramble: ", scram)
+print("Solution: ", sol)
 
 # communicate to Arduino using pyserial
 # ser = serial.Serial('/dev/tty.usbmodem14101',9600)
