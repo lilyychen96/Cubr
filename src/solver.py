@@ -4,6 +4,7 @@
 # convert to solution string
 # output: solution string
 import sys, os
+import time
 import cubeState
 import argparse
 import serial
@@ -18,7 +19,6 @@ if args.solver == "beginners":
 	import beginners as sv
 
 else:
-	
 	sys.path.insert(0, os.path.abspath('twoPhase'))
 	import twoPhase.solver as sv
 
@@ -134,10 +134,10 @@ print(scram)
 print(sol)
 
 # communicate to Arduino using pyserial
-ser = serial.Serial('/dev/tty.usbmodem14101',9600)
-time.sleep(5)
-c = ser.write(scram.encode())
-time.sleep(30)
-b = ser.write(sol.encode())
-ser.close()
+# ser = serial.Serial('/dev/tty.usbmodem14101',9600)
+# time.sleep(5)
+# c = ser.write(scram.encode())
+# time.sleep(30)
+# b = ser.write(sol.encode())
+# ser.close()
 

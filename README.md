@@ -6,12 +6,14 @@ The Rubik’s cube is a 3x3x3 3D combination puzzle that can be solved algorithm
 
 # The Team
 - JT Aceron
-  - https://github.com/jtaceron
+  - https://www.linkedin.com/in/jtaceron
+  - https://jaceron.myportfolio.com
   - Firmware, Hardware, + Circuit Design
 - Lily Chen
   - https://lilyychen96.github.io/
   - Software Design, Circuit Design and Assembly, + CAD
 - Sam Fazel-Sarjui
+  - https://www.linkedin.com/in/sam-fazel-sarjui-2b7b19127/
   - https://sfazelsa.github.io/
   - Computer Vision + UI, 3D Printing and Assembly, + Firmware
 
@@ -19,5 +21,9 @@ The Rubik’s cube is a 3x3x3 3D combination puzzle that can be solved algorithm
 - Python 3.4+
 - Numpy
 - OpenCV
-- Built-in or external webcam
+- pySerial
 
+# Execution
+- To use beginners method, execute %python3 solver.py --solver beginners
+- To use twoPhase method, clone twoPhase repo into twoPhase directory, then execute %python3 solver.py
+  - https://github.com/hkociemba/RubiksCube-TwophaseSolver
