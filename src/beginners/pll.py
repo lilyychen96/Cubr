@@ -157,16 +157,15 @@ def pll_moves(cube_obj, state):
     """
     Returns the moves list to permute the top layer into the fully-solved state
     """
-    print("pll state: %s" % state)
     # edge perms
     if (state == 1):
         return ["R1", "U3", "R1", "U1", "R1", "U1", "R1", "U3", "R3", "U3", "R2"]
     elif (state == 2):
         return ["R2", "U1", "R1", "U1", "R3", "U3", "R3", "U3", "R3", "U1", "R3"]
     elif (state == 3):
-        return ["U1", "R3", "U3", "R1", "U3", "R1", "U1", "R1", "U3", "R3", "U1", "R1", "U1", "R2", "U3", "R3", "U1"]
+        return ["U3", "R3", "U3", "R2", "U1", "R1", "U1", "R3", "U3", "R1", "U1", "R1", "U3", "R1", "U3", "R3"]
     elif (state == 4):
-        return ["L2", "R2", "D1", "L2", "R2", "D2", "L2", "R2", "D1", "U2", "L2", "R2"]
+        return ["R2", "U2", "R1", "U2", "R2", "U2", "R2", "U2", "R1", "U2", "R2"]
 
     # corner perms
     elif (state == 5):

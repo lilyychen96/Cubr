@@ -31,6 +31,8 @@ def solve_oll(cube_obj):
     cubies = cube_obj.cubies
 
     if is_oll(cube_state):
+        print("OLL completed")
+        print(cube_obj)
         return
 
     # rotate top layer until matching state is found
@@ -41,8 +43,8 @@ def solve_oll(cube_obj):
         # make temp cube object, execute U1
         execute_moves(temp, "U1")
         state = oll_state(temp.cb)
-        print("OLL state: %s" % state)
-        print(temp)
+        # print("OLL state: %s" % state)
+        # print(temp)
         u_turns += 1
 
     if (u_turns == 1):
@@ -60,10 +62,11 @@ def solve_oll(cube_obj):
     moves_list = oll_moves(cube_obj, state)
     execute_moves(cube_obj, moves_list)
 
+    print(cube_obj)
     try:
         assert(is_oll(cube_obj.cb))
-        print("OLL completed", end="...")
-        # print(cube_obj)
+        print("OLL completed")
+        print(cube_obj)
     except AssertionError:
         print("did not successfully complete OLL\n")
 
@@ -89,6 +92,8 @@ def solve_pll(cube_obj):
     cubies = cube_obj.cubies
 
     if is_pll(cube_state):
+        print("PLL completed")
+        print(cube_obj)
         return
 
     # rotate top layer until matching state is found
@@ -120,8 +125,8 @@ def solve_pll(cube_obj):
 
     try:
         assert(is_pll(cube_obj.cb))
-        print("PLL completed", end="...")
-        # print(cube_obj)
+        print("PLL completed")
+        print(cube_obj)
     except AssertionError:
         print("did not successfully complete PLL\n")
 
@@ -129,11 +134,7 @@ def layer3(cube_obj):
     """
     Calls the solving algorithms for the third/top layer: OLL and PLL
     """
-    print("solving OLL")
-    print(cube_obj)
     solve_oll(cube_obj)
-    exit()
-    # print(cube_obj)
     solve_pll(cube_obj)
 
     # spins top layer until everything lines up
@@ -163,8 +164,8 @@ def layer3(cube_obj):
 
     try:
         assert(cube_obj.solved)
-        print("cube is fully solved!!!\n")
-        print(cube_obj)
+        print("cube is fully solved!!!")
     except AssertionError:
         print("did not successfully solve cube at last layer...\n")
-        print(cube_obj)
+        
+    print(cube_obj)

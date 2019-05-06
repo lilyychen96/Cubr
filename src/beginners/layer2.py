@@ -481,13 +481,15 @@ def layer2(cube_obj):
     cubies = cube_obj.cubies
 
     if is_f2l(cube_state):
+        print("second layer completed")
+        print(cube_obj)
         return
 
-    print("FL")
-    print(cube_obj)
+    # print("FL")
+    # print(cube_obj)
     if not ((cube_state[21] == Cl.F) and (cube_state[41] == Cl.L)):
         loc = find_edge(cubies, tuple(sorted([Cl.F, Cl.L])))
-        print(loc)
+        # print(loc)
         if loc is None:
             print("can't find edge (%s, %s)" % tuple(sorted([Cl.F, Cl.L])))
         else:
@@ -499,13 +501,15 @@ def layer2(cube_obj):
     cubies = cube_obj.cubies
 
     if is_f2l(cube_state):
+        print("second layer completed")
+        print(cube_obj)
         return
 
-    print("FR")
-    print(cube_obj)
+    # print("FR")
+    # print(cube_obj)
     if not ((cube_state[23] == Cl.F) and (cube_state[12] == Cl.R)):
         loc = find_edge(cubies, tuple(sorted([Cl.F, Cl.R])))
-        print(loc)
+        # print(loc)
         if loc is None:
             print("can't find edge (%s, %s)" % tuple(sorted([Cl.F, Cl.R])))
         else:
@@ -517,13 +521,15 @@ def layer2(cube_obj):
     cubies = cube_obj.cubies
 
     if is_f2l(cube_state):
+        print("second layer completed")
+        print(cube_obj)
         return
 
-    print("BL")
-    print(cube_obj)
+    # print("BL")
+    # print(cube_obj)
     if not ((cube_state[50] == Cl.B) and (cube_state[39] == Cl.L)):
         loc = find_edge(cubies, tuple(sorted([Cl.B, Cl.L])))
-        print(loc)
+        # print(loc)
         if loc is None:
             print("can't find edge (%s, %s)" % tuple(sorted([Cl.B, Cl.L])))
         else:
@@ -535,13 +541,15 @@ def layer2(cube_obj):
     cubies = cube_obj.cubies
 
     if is_f2l(cube_state):
+        print("second layer completed")
+        print(cube_obj)
         return
 
-    print("BR")
-    print(cube_obj)
+    # print("BR")
+    # print(cube_obj)
     if not ((cube_state[48] == Cl.B) and (cube_state[14] == Cl.R)):
         loc = find_edge(cubies, tuple(sorted([Cl.B, Cl.R])))
-        print(loc)
+        # print(loc)
         if loc is None:
             print("can't find edge (%s, %s)" % tuple(sorted([Cl.B, Cl.R])))
         else:
@@ -550,7 +558,7 @@ def layer2(cube_obj):
 
     try:
         assert(is_f2l(cube_obj.cb))
-        print("second layer completed", end="...")
-        # print(cube_obj)
+        print("second layer completed")
+        print(cube_obj)
     except AssertionError:
         print("did not successfully complete F2L\n")

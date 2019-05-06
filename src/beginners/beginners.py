@@ -1,5 +1,5 @@
 import sys, os
-sys.path.insert(0, os.path.abspath('cube'))
+sys.path.insert(0, os.path.abspath('src/cube'))
 from cube import Cube
 from layer1 import layer1
 from layer2 import layer2
@@ -44,8 +44,8 @@ def beginners(config, test=False):
     # print("layer 3 soln: %s\n\n" % soln3)
 
     print("cube solved? %s\n" % cube.solved)
-    print("# of moves: %s" % cube.total)
-    print("solution:\n\n%s\n\n\n" % cube.soln)
+    print("# of moves: %s\n" % cube.total)
+    print("solution:\n%s\n\n\n" % cube.soln)
 
     return cube.soln
 
@@ -62,7 +62,7 @@ def random_scramble():
     for i in range(random.randint(20,25)):
         scramble += moves[random.randint(0,17)] + " "
 
-    print(scramble)
+    print("scramble: %s" % scramble)
     execute_moves(cube, scramble.split())
     return cube
 
@@ -106,10 +106,10 @@ config = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
 # uncomment to test
 # breaks at 2nd layer
 # cube8 = Cube(config, True)
-# execute_moves(cube8, "U1 L1 L1 D3 L2 D3 D2 B1 L1 F2 B1 B1 B1 D3 F3 R2 B2 U1 U3 R1 L3 R1 B1 U2 R1".split())
+# execute_moves(cube8, "B2 L2 R2 L2 R3 U3 F1 B2 U2 L2 U2 U2 L1 D3 B3 R1 R3 R3 R3 D1".split())
 # beginners(cube8.config)
 
-# cube = random_scramble()
-# print(cube)
-# beginners(cube.config)
+cube = random_scramble()
+print(cube)
+beginners(cube.config)
 
